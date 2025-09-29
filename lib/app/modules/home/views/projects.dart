@@ -210,14 +210,14 @@ class Projects extends StatelessWidget {
       'description':
       'A platform that allows households to monetize their culinary skills, promote healthy eating, and celebrate local culture through shared meals.',
       'imageUrl': 'images/project.webp',
-      'link': 'https://github.com/payalkumawat/foodco',
+      'link': 'https://github.com/PayalKmt/foodco',
     },
     {
       'title': 'Footware Store – E-Commerce App',
       'description':
           "Developed a comprehensive e-commerce mobile application for footwear shopping with a focus on secure authentication, real-time data handling, and seamless payment integration. ",
       'imageUrl': 'images/project.webp',
-      'link': 'https://https://github.com/FlutterSanjay/Footware_App',
+      'link': 'https://github.com/FlutterSanjay/Footware_App',
     },
     {
       'title': 'Restaurant AI AssistantDuration',
@@ -232,7 +232,7 @@ class Projects extends StatelessWidget {
       'description':
           'Developed a web application that uses AI to analyze and review code snippets, providing real-time evaluation and feedback through an intuitive interface. ',
       'imageUrl': 'images/project.webp',
-      'link': 'https://https://github.com/FlutterSanjay/Code_Reviewer',
+      'link': 'https://github.com/FlutterSanjay/Code_Reviewer',
     },
 {
       'title': 'Flights-Service (Node.js Backend)',
