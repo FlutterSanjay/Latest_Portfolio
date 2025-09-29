@@ -1,17 +1,10 @@
-import 'dart:io' if (dart.library.html) 'dart:html'; // Conditional import
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:open_file/open_file.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
+
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'dart:html' as html;
 
 import 'package:url_launcher/url_launcher.dart';
-
-
-
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
@@ -120,6 +113,7 @@ class HomeController extends GetxController {
   @override
   void onReady() {
     super.onReady();
+    isDownloading.value = true;
   }
 
   @override
@@ -164,8 +158,7 @@ class HomeController extends GetxController {
     }
   }
 
-
-Future<void> downloadPdf(String url, String fileName) async {
+  Future<void> downloadPdf(String url, String fileName) async {
     try {
       if (kIsWeb) {
         // For web, just open in new tab
