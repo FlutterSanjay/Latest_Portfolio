@@ -95,7 +95,7 @@ class About extends GetView<HomeController> {
                         clipBehavior:
                             Clip.hardEdge, // makes image respect border radius
                         child: Image.asset(
-                          'images/profile_pic.jpeg',
+                          'images/My_Photo.png',
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Container(
@@ -126,7 +126,7 @@ class About extends GetView<HomeController> {
                           : CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "I'm Payal Kumawat, a Flutter Developer",
+                      "I'm Sanjay Shaw, a Flutter Developer",
                       style: TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: isMobile ? Get.width * 0.04 : 44.sp,
@@ -136,7 +136,7 @@ class About extends GetView<HomeController> {
                     ),
                     SizedBox(height: 20.h),
                     Text(
-                      "As a 3rd year student of Computer Science and Engineering, I am excited about the opportunity to develop my skills in App development and Web development. My experience with Dart, Flutter, Getx, Bloc, Html, CSS, JavaScript, React, Node.js, Express.js, Mongo DB, MySQL, Canvas, Android Studio, Visual Studio Code and Git version control has prepared me for creating functional and user-friendly mobile applications and web applications.",
+                      "As a Computer Science and Engineering student, I am passionate about creating responsive, user-friendly, and scalable applications. I specialize in Flutter & React Native development, with strong knowledge of Flutter Flow, Dart, Python, and C++. My experience extends to full-stack development using Node.js, Express.js, REST APIs, and database management with Google Cloud Firestore, MongoDB, and MySQL.I also bring expertise in state management (GetX, BLoC), along with UI/UX design in Figma, ensuring both functionality and great user experience. Through my projects and internship experience, I have developed a strong foundation in problem-solving, teamwork, and precision in execution. With a continuous learning mindset, I aim to contribute effectively as a mobile and web app developer while growing with industry advancements.",
                       style: TextStyle(
                         color: AppColors.textLightColor,
                         fontSize: isMobile ? Get.width * 0.035 : 25.sp,
@@ -145,6 +145,7 @@ class About extends GetView<HomeController> {
                     ),
                     SizedBox(height: 20.h),
                     Text(
+                      
                       "I'm passionate about building elegant solutions that solve real-world problems. My goal is to continue growing as a developer by taking on challenging projects and expanding my technical expertise.",
                       style: TextStyle(
                         color: AppColors.textLightColor,
@@ -155,13 +156,14 @@ class About extends GetView<HomeController> {
                     SizedBox(height: 40.h),
                     // Stats (e.g., 4+ projects, 2 years experience)
                     Wrap(
-                      spacing: 30.w,
+                      spacing: 50.w,
                       runSpacing: 20.h,
                       alignment:
                           isMobile ? WrapAlignment.center : WrapAlignment.start,
                       children: [
                         _buildStatCard(context, '4+', 'Projects'),
-                        _buildStatCard(context, '2', 'Internship'),
+                        _buildStatCard(context, '2+', 'Internships'),
+                        _buildStatCard(context, '3+', 'Certificates'),
                         // Add more stats as needed
                       ],
                     ),
@@ -177,42 +179,54 @@ class About extends GetView<HomeController> {
 
   Widget _buildStatCard(BuildContext context, String count, String label) {
     bool isMobile = 1.sw < 800; // Smaller breakpoint for cards
-    return Container(
-      width: isMobile ? Get.width * 0.5 : 400.w,
-      padding: EdgeInsets.all(20.r),
-      decoration: BoxDecoration(
-        color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(15.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 8),
-            blurRadius: 10.r,
-            offset: const Offset(0, 5),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Text(
-            count,
-            style: TextStyle(
-              color: AppColors.secondaryColor,
-              fontSize: isMobile ? Get.width * 0.05 : 60.sp,
-              fontWeight: FontWeight.bold,
+    Color cardColor = AppColors.cardColor; // Default color
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return MouseRegion(
+          onEnter:
+              (_) => setState(
+                () => cardColor = const Color.fromARGB(255, 66, 64, 66),
+              ),
+          onExit: (_) => setState(() => cardColor = AppColors.cardColor),
+          child: Container(
+            width: isMobile ? Get.width * 0.5 : 300.w,
+            padding: EdgeInsets.all(20.r),
+            decoration: BoxDecoration(
+              color: cardColor,
+              borderRadius: BorderRadius.circular(15.r),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.08),
+                  blurRadius: 10.r,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Text(
+                  count,
+                  style: TextStyle(
+                    color: AppColors.secondaryColor,
+                    fontSize: isMobile ? Get.width * 0.05 : 60.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: AppColors.textColor,
+                    fontSize: isMobile ? Get.width * 0.04 : 40.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
             ),
           ),
-          SizedBox(height: 5.h),
-          Text(
-            label,
-            style: TextStyle(
-              color: AppColors.textColor,
-              fontSize: isMobile ? Get.width * 0.04 : 40.sp,
-              fontWeight: FontWeight.w500,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

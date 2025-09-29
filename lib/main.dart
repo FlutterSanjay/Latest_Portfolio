@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
             splitScreenMode: true,
             builder: (_, child) {
               return GetMaterialApp(
-                title: "Payal Kumawat - Portfolio",
+                
+              title: "Portfolio",
                 debugShowCheckedModeBanner: false,
                 theme: ThemeData(
                   primarySwatch: Colors.blue,

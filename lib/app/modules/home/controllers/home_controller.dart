@@ -1,9 +1,22 @@
+import 'dart:io' if (dart.library.html) 'dart:html'; // Conditional import
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:open_file/open_file.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'dart:html' as html;
+
 import 'package:url_launcher/url_launcher.dart';
+
+
+
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
+  var isDownloading = false.obs;
+  var progress = 0.0.obs;
 
   // GlobalKeys for each section to enable scrolling
   final GlobalKey homeKey = GlobalKey();
@@ -14,6 +27,12 @@ class HomeController extends GetxController {
   final GlobalKey educationKey = GlobalKey();
   final GlobalKey contactKey = GlobalKey();
 
+  List<String> sliderImage = [
+    'images/cer.JPG',
+    'images/one.jpeg',
+    'images/two.jpeg',
+    'images/three.jpeg',
+  ];
   // Map to easily access GlobalKeys by section name
   late Map<String, GlobalKey> selectionKeys;
 
@@ -30,8 +49,8 @@ class HomeController extends GetxController {
   RxBool isMoveUp = true.obs;
 
   // animation for this image
-  void startAnimation() async{
-    while(true){
+  void startAnimation() async {
+    while (true) {
       await Future.delayed(const Duration(milliseconds: 1600));
       isMoveUp.value = !isMoveUp.value;
     }
@@ -63,17 +82,23 @@ class HomeController extends GetxController {
         emailController.text.trim().isEmpty ||
         subjectController.text.trim().isEmpty ||
         messageController.text.trim().isEmpty) {
-      Get.snackbar("Error", "All fields are required",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white);
+      Get.snackbar(
+        "Error",
+        "All fields are required",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
       return false;
     }
     if (!GetUtils.isEmail(emailController.text.trim())) {
-      Get.snackbar("Error", "Enter a valid email",
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: Colors.red,
-          colorText: Colors.white);
+      Get.snackbar(
+        "Error",
+        "Enter a valid email",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
       return false;
     }
     return true;
@@ -91,7 +116,6 @@ class HomeController extends GetxController {
     subjectController.clear();
     messageController.clear();
   }
-
 
   @override
   void onReady() {
@@ -137,6 +161,30 @@ class HomeController extends GetxController {
         backgroundColor: Get.theme.colorScheme.error,
         colorText: Get.theme.colorScheme.onError,
       );
+    }
+  }
+
+
+Future<void> downloadPdf(String url, String fileName) async {
+    try {
+      if (kIsWeb) {
+        // For web, just open in new tab
+        final anchor =
+            html.AnchorElement(href: url)
+              ..download = fileName
+              ..target = '_blank';
+        html.document.body!.append(anchor);
+        anchor.click();
+        anchor.remove();
+      } else {
+        // For mobile, use url_launcher
+        if (await canLaunchUrl(Uri.parse(url))) {
+          await launchUrl(Uri.parse(url));
+        }
+      }
+      Get.snackbar("Success", "PDF opened");
+    } catch (e) {
+      Get.snackbar("Error", "Could not open PDF");
     }
   }
 }

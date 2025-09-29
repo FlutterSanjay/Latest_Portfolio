@@ -72,32 +72,38 @@ class ContactMe extends GetView<HomeController> {
                       _buildContactInfo(
                         FontAwesomeIcons.locationDot,
                         'Location',
-                        'Sikar, Rajasthan, India',
+                        'Kolkata, West Bengal, India',
                         isMobile
                       ),
                       SizedBox(height: 30.h),
                       _buildContactInfo(
                         FontAwesomeIcons.envelope,
                         'Email',
-                        'kumawatpayal2005513@gmail.com',
+                        'sanjayshaw80138@gmail.com',
                         isMobile,
-                        onTap: () => controller.openUrl('mailto:kumawatpayal2005513@gmail.com'),
+                        onTap:
+                            () => controller.openUrl(
+                              'mailto:sanjayshaw80138@gmail.com',
+                            ),
                       ),
                       SizedBox(height: 30.h),
                       _buildContactInfo(
                         FontAwesomeIcons.phone,
                         'Phone',
-                        '+91 8058776684',
+                        '+91 8013812268',
                         isMobile,
-                        onTap: () => controller.openUrl('tel:+918058776684'),
+                        onTap: () => controller.openUrl('tel:+918013812268'),
                       ),
                       SizedBox(height: 30.h),
                       _buildContactInfo(
                         FontAwesomeIcons.linkedin,
                         'LinkedIn',
-                        'Payal Kumawat',
+                        'Sanjay Shaw',
                         isMobile,
-                        onTap: () => controller.openUrl('https://linkedin.com/in/payal-kumawat'),
+                        onTap:
+                            () => controller.openUrl(
+                              'https://www.linkedin.com/in/sanjay-shaw-6a70a7178/',
+                            ),
                       ),
                     ],
                   ),
@@ -143,7 +149,10 @@ class ContactMe extends GetView<HomeController> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.buttonColor,
-                          padding: EdgeInsets.symmetric(horizontal: isMobile ? 30.w : 40.w, vertical: 15.h),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: isMobile ? 30.w : 40.w,
+                            vertical: 25.h,
+                          ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.r),
                           ),
@@ -153,7 +162,7 @@ class ContactMe extends GetView<HomeController> {
                           'Send Message',
                           style: TextStyle(
                             color: AppColors.textColor,
-                            fontSize: isMobile ? Get.width * 0.035 : 28.sp,
+                            fontSize: isMobile ? Get.width * 0.035 : 20.sp,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

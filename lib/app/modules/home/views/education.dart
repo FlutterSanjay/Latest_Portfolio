@@ -157,23 +157,23 @@ class Education extends StatelessWidget {
       'institution': 'Central University of Haryana',
       'description':
       'Pursuing my degree with a focus on software development and advanced programming concepts.',
-      'grade': 'CGPA: 8.54',
+      'grade': 'CGPA: 8.72',
     },
     {
-      'year': '2020 - 2021',
-      'degree': 'Senior Secondary (XII) - Science',
-      'institution': 'Government Senior Secondary School Reengus',
+      'year': '2020 - 2022',
+      'degree': 'Senior Secondary (XII)',
+      'institution': 'Ideal School ,Kalyani (W.B)',
       'description':
       'Completed my senior secondary education with a focus on science subjects.',
-      'grade': 'Percentage: 98.40%',
+      'grade': 'Percentage: 90.2%',
     },
     {
       'year': '2019',
       'degree': 'Secondary Examination (X)',
-      'institution': 'Government Senior Secondary School Baori',
+      'institution': 'Air Force School, Palta',
       'description':
-      'Achieved 4th Rank in District (Sikar – Rajasthan).',
-      'grade': 'Percentage: 94.83%',
+          'Completed my secondary education.',
+      'grade': 'Percentage: 77.8%',
     },
   ];
 

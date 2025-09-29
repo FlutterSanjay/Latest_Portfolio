@@ -236,11 +236,11 @@ class Experience extends StatelessWidget {
 
   static const List<Map<String, dynamic>> _experiences = [
     {
-      'duration': '20th Jan - 20th April 2025',
-      'title': 'Node.js Intern',
+      'duration': '09th Feb - 09th May 2025',
+      'title': 'MERN Intern',
       'company': 'UptoSkills',
       'description':
-      'Contributed to the AI Interview Project, enhancing backend features with Node.js. Implemented data workflows, supported frontend UI, and improved system performance. Collaborated with the team to deliver efficient, scalable solutions.',
+          'During my internship, I worked on full-stack development using the MERN stack (MongoDB, Express.js, React.js, Node.js). I built responsive UIs with React.js and Tailwind CSS, designed MongoDB schemas, implemented RESTful APIs with authentication, and enabled real-time updates.',
     },
     {
       'duration': '17 June - 29 July 2024',

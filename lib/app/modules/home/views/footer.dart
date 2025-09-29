@@ -48,7 +48,7 @@ class Footer extends GetView<HomeController> {
                   crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'PayalKumawat',
+                      'Sanjay Shaw',
                       style: TextStyle(
                         color: AppColors.textColor,
                         fontSize: isMobile ? Get.width * 0.06 : 35.sp,
@@ -70,22 +70,34 @@ class Footer extends GetView<HomeController> {
                       mainAxisAlignment: isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
                       children: [
                         IconButton(
-                          onPressed: () => controller.openUrl('https://www.linkedin.com/in/payal-kumawat-664973302/'),
+                          onPressed:
+                              () => controller.openUrl(
+                                'https://www.linkedin.com/in/sanjay-shaw-6a70a7178/',
+                              ),
                           icon: FaIcon(FontAwesomeIcons.linkedinIn, color: AppColors.socialIconColor, size: isMobile ? Get.width * 0.035 : 30.sp),
                         ),
                         SizedBox(width: 20.w),
                         IconButton(
-                          onPressed: () => controller.openUrl('https://github.com/PayalKmt'),
+                          onPressed:
+                              () => controller.openUrl(
+                                'https://github.com/FlutterSanjay',
+                              ),
                           icon: FaIcon(FontAwesomeIcons.github, color: AppColors.socialIconColor, size: isMobile ? Get.width * 0.035 :30.sp),
                         ),
                         SizedBox(width: 20.w),
                         IconButton(
-                          onPressed: () => controller.openUrl('mailto:kumawatpayal2005513@gmail.com'),
+                          onPressed:
+                              () => controller.openUrl(
+                                'mailto:sanjayshaw80138@gmail.com',
+                              ),
                           icon: FaIcon(FontAwesomeIcons.envelope, color: AppColors.socialIconColor, size: isMobile ? Get.width * 0.035 :30.sp),
                         ),
                         SizedBox(width: 20.w),
                         IconButton(
-                          onPressed: () => controller.openUrl('https://leetcode.com/u/kumawatpayal2005513/'),
+                          onPressed:
+                              () => controller.openUrl(
+                                'https://leetcode.com/u/sanjayshaw80138/',
+                              ),
                           icon: FaIcon(FontAwesomeIcons.code, color: AppColors.socialIconColor, size: isMobile ? Get.width * 0.035 :30.sp),
                         ),
                       ],
@@ -253,7 +265,7 @@ class Footer extends GetView<HomeController> {
           ),
           Divider(color: AppColors.textLightColor, height: 80.h),
           Text(
-            '© 2024 Payal Kumawat. All rights reserved.',
+            '© 2024 Sanjay Shaw. All rights reserved.',
             style: TextStyle(
               color: AppColors.textLightColor,
               fontSize: isMobile ? Get.width * 0.035 : 20.sp,

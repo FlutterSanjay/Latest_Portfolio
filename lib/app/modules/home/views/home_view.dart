@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,14 +37,15 @@ class HomeView extends GetView<HomeController> {
                     style: TextStyle(
                       fontSize: Get.width * 0.06,
                       fontWeight: FontWeight.bold,
-                        foreground: Paint()
-                          ..shader = LinearGradient(
-                            colors: [
-                              AppColors.primaryColor,
-                              AppColors.primary4Color,
-                              AppColors.primary5Color,
-                            ],
-                          ).createShader(Rect.fromLTWH(0, 0, 300, 100))
+                      foreground:
+                          Paint()
+                            ..shader = LinearGradient(
+                              colors: [
+                                AppColors.primaryColor,
+                                AppColors.primary4Color,
+                                AppColors.primary5Color,
+                              ],
+                            ).createShader(Rect.fromLTWH(0, 0, 300, 100)),
                     ),
                   ),
                 ),
@@ -110,7 +112,7 @@ class HomeView extends GetView<HomeController> {
                           text: TextSpan(
                             children: [
                               TextSpan(
-                                text: "Payal ",
+                                text: "Sanjay ",
                                 style: TextStyle(
                                   color: AppColors.textColor,
                                   fontSize: isMobile ? Get.width * 0.08 : 85.sp,
@@ -118,20 +120,23 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                               TextSpan(
-                                text: "Kumawat",
+                                text: "Shaw",
                                 style: TextStyle(
                                   fontSize: isMobile ? Get.width * 0.08 : 85.sp,
                                   fontWeight: FontWeight.bold,
-                                  foreground: Paint()
-                                    ..shader = LinearGradient(
-                                      colors: [
-                                        AppColors.primaryColor,
-                                        AppColors.primary2Color,
-                                        AppColors.primary3Color,
-                                        AppColors.primary4Color,
-                                        AppColors.primary5Color,
-                                      ],
-                                ).createShader(Rect.fromLTWH(0, 0, 300, 100))
+                                  foreground:
+                                      Paint()
+                                        ..shader = LinearGradient(
+                                          colors: [
+                                            AppColors.primaryColor,
+                                            AppColors.primary2Color,
+                                            AppColors.primary3Color,
+                                            AppColors.primary4Color,
+                                            AppColors.primary5Color,
+                                          ],
+                                        ).createShader(
+                                          Rect.fromLTWH(0, 0, 300, 100),
+                                        ),
                                 ),
                               ),
                             ],
@@ -144,21 +149,31 @@ class HomeView extends GetView<HomeController> {
                           style: TextStyle(
                             color: AppColors.secondaryColor,
                             fontSize: isMobile ? Get.width * 0.055 : 45.sp,
-                            fontWeight: FontWeight.w700
+                            fontWeight: FontWeight.w700,
                           ),
-                          textAlign: isMobile ? TextAlign.center : TextAlign.left,
+                          textAlign:
+                              isMobile ? TextAlign.center : TextAlign.left,
                           child: AnimatedTextKit(
                             pause: Duration(milliseconds: 300),
                             animatedTexts: [
-                              TyperAnimatedText("Flutter Developer", speed: Duration(milliseconds: 200)),
-                              TyperAnimatedText("Backend Developer", speed: Duration(milliseconds: 200)),
-                              TyperAnimatedText("Full Stack Developer", speed: Duration(milliseconds: 200)),
+                              TyperAnimatedText(
+                                "Flutter Developer",
+                                speed: Duration(milliseconds: 200),
+                              ),
+                              TyperAnimatedText(
+                                "Backend Developer",
+                                speed: Duration(milliseconds: 200),
+                              ),
+                              TyperAnimatedText(
+                                "Full Stack Developer",
+                                speed: Duration(milliseconds: 200),
+                              ),
                             ],
                           ),
                         ),
                         SizedBox(height: 40.w),
                         Text(
-                          "A passionate Computer Science Engineering student with expertise in App development using Flutter, React, and Node.js.",
+                          "A passionate Computer Science Engineering student with expertise in App development using Flutter, React & Node.js (Backend)",
                           style: TextStyle(
                             color: AppColors.textLightColor,
                             fontSize: isMobile ? Get.width * 0.035 : 25.sp,
@@ -176,25 +191,30 @@ class HomeView extends GetView<HomeController> {
                                   ? WrapAlignment.center
                                   : WrapAlignment.start,
                           children: [
-                            ElevatedButton(
+                            OutlinedButton(
                               onPressed: () {
-                                controller.scrollToSection('Contact');
+                                controller.downloadPdf(
+                                  'https://drive.google.com/uc?export=download&id=1WzVT7NVv6IB5zAwo4FylsHRq-3bnBFdk',
+                                  'My_Resume',
+                                );
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.buttonColor,
+                              style: OutlinedButton.styleFrom(
+                                side: BorderSide(
+                                  color: AppColors.primary2Color,
+                                  width: 2.w,
+                                ),
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: isMobile ? 25.h :38.h,
-                                  vertical: isMobile ? 10.w : 24.w,
+                                  horizontal: isMobile ? 25.w : 38.h,
+                                  vertical: isMobile ? 10.h : 24.w,
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
-                                elevation: 5,
                               ),
                               child: Text(
-                                'Get In Touch',
+                                'Download Resume',
                                 style: TextStyle(
-                                  color: AppColors.textColor,
+                                  color: AppColors.primary2Color,
                                   fontSize: isMobile ? 50.sp : 25.sp,
                                   fontWeight: FontWeight.bold,
                                 ),
@@ -202,6 +222,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             OutlinedButton(
                               onPressed: () {
+                                
                                 controller.scrollToSection('Projects');
                               },
                               style: OutlinedButton.styleFrom(
@@ -210,8 +231,8 @@ class HomeView extends GetView<HomeController> {
                                   width: 2.w,
                                 ),
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: isMobile ? 25.w :38.h,
-                                  vertical: isMobile ? 10.h :24.w,
+                                  horizontal: isMobile ? 25.w : 38.h,
+                                  vertical: isMobile ? 10.h : 24.w,
                                 ),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.r),
@@ -228,7 +249,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ],
                         ),
-                        SizedBox(height: isMobile ? 40.w :55.h),
+                        SizedBox(height: isMobile ? 40.w : 55.h),
                         // Social Media Icons
                         Row(
                           mainAxisAlignment:
@@ -239,7 +260,7 @@ class HomeView extends GetView<HomeController> {
                             IconButton(
                               onPressed:
                                   () => controller.openUrl(
-                                    'https://www.linkedin.com/in/payal-kumawat-664973302/',
+                                    'https://www.linkedin.com/in/sanjay-shaw-6a70a7178/',
                                   ),
                               icon: FaIcon(
                                 FontAwesomeIcons.linkedinIn,
@@ -251,7 +272,7 @@ class HomeView extends GetView<HomeController> {
                             IconButton(
                               onPressed:
                                   () => controller.openUrl(
-                                    'https://github.com/PayalKmt',
+                                    'https://github.com/FlutterSanjay',
                                   ),
                               icon: FaIcon(
                                 FontAwesomeIcons.github,
@@ -263,7 +284,7 @@ class HomeView extends GetView<HomeController> {
                             IconButton(
                               onPressed:
                                   () => controller.openUrl(
-                                    'mailto:kumawatpayal2005513@gmail.com',
+                                    'mailto:sanjayshaw80138@gmail.com',
                                   ),
                               icon: FaIcon(
                                 FontAwesomeIcons.envelope,
@@ -275,7 +296,7 @@ class HomeView extends GetView<HomeController> {
                             IconButton(
                               onPressed:
                                   () => controller.openUrl(
-                                    'https://leetcode.com/u/kumawatpayal2005513/',
+                                    'https://leetcode.com/u/sanjayshaw80138/',
                                   ), // Replace with actual blog/website
                               icon: FaIcon(
                                 FontAwesomeIcons.code,
@@ -321,22 +342,54 @@ class HomeView extends GetView<HomeController> {
                               ),
                               clipBehavior:
                                   Clip.hardEdge, // makes image respect border radius
-                              child: Image.asset(
-                                'images/devImage.webp',
-                                fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) {
-                                  return Container(
-                                    color: AppColors.cardColor,
-                                    child: Center(
-                                      child: Text(
-                                        'Image Not Found',
-                                        style: TextStyle(
-                                          color: AppColors.textLightColor,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                              child: CarouselSlider(
+                                options: CarouselOptions(
+                                  height: Get.height * 0.6,
+                                  autoPlay: true,
+                                ),
+
+                                items:
+                                    controller.sliderImage.map((i) {
+                                      return Builder(
+                                        builder: (BuildContext context) {
+                                          return Container(
+                                            width:
+                                                MediaQuery.of(
+                                                  context,
+                                                ).size.width,
+                                            margin: EdgeInsets.symmetric(
+                                              horizontal: 5.0,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.amber,
+                                            ),
+                                            child: Image.asset(
+                                              i,
+                                              fit: BoxFit.cover,
+                                              errorBuilder: (
+                                                context,
+                                                error,
+                                                stackTrace,
+                                              ) {
+                                                return Container(
+                                                  color: AppColors.cardColor,
+                                                  child: Center(
+                                                    child: Text(
+                                                      'Image Not Found',
+                                                      style: TextStyle(
+                                                        color:
+                                                            AppColors
+                                                                .textLightColor,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          );
+                                        },
+                                      );
+                                    }).toList(),
                               ),
                             ),
                           ),
@@ -347,22 +400,22 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-            if(isMobile) SizedBox(height: Get.height * 0.05,),
+            if (isMobile) SizedBox(height: Get.height * 0.05),
             // About Section
             SizedBox(key: controller.aboutKey, child: const About()),
-            if(isMobile) SizedBox(height: Get.height * 0.05,),
+            if (isMobile) SizedBox(height: Get.height * 0.05),
             // Skills Section
             SizedBox(key: controller.skillsKey, child: const Skills()),
-            if(isMobile) SizedBox(height: Get.height * 0.05,),
+            if (isMobile) SizedBox(height: Get.height * 0.05),
             // Experience Section
             SizedBox(key: controller.experienceKey, child: const Experience()),
-            if(isMobile) SizedBox(height: Get.height * 0.05,),
+            if (isMobile) SizedBox(height: Get.height * 0.05),
             // Projects Section
             SizedBox(key: controller.projectsKey, child: const Projects()),
-            if(isMobile) SizedBox(height: Get.height * 0.05,),
+            if (isMobile) SizedBox(height: Get.height * 0.05),
             // Education Section
             SizedBox(key: controller.educationKey, child: const Education()),
-            if(isMobile) SizedBox(height: Get.height * 0.05,),
+            if (isMobile) SizedBox(height: Get.height * 0.05),
             // Contact Section
             SizedBox(key: controller.contactKey, child: const ContactMe()),
             // Footer

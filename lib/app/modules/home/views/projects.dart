@@ -104,7 +104,7 @@ class Projects extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: isMobile ? 20.w : 25.w, vertical: isMobile ? 10.h : 12.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.r),
-          side: BorderSide(color: AppColors.primaryColor, width: 1.w),
+          side: BorderSide(color: AppColors.socialIconColor, width: 1.w),
         ),
         elevation: 3,
       ),
@@ -138,7 +138,7 @@ class Projects extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.vertical(top: Radius.circular(15.r)),
-            child: Image.network(
+            child: Image.asset(
               project['imageUrl']!,
               fit: BoxFit.cover,
               height: isMobile ? 400.h : 600.h, // Fixed height for image
@@ -206,26 +206,42 @@ class Projects extends StatelessWidget {
 
   static const List<Map<String, dynamic>> _projects = [
     {
-      'title': 'FoodCo',
+      'title': 'FoodCo App',
       'description':
       'A platform that allows households to monetize their culinary skills, promote healthy eating, and celebrate local culture through shared meals.',
-      'imageUrl': 'https://placehold.co/600x400/2C2C2C/E0E0E0?text=FoodCo',
+      'imageUrl': 'images/project.webp',
       'link': 'https://github.com/payalkumawat/foodco',
     },
     {
-      'title': 'ToDo App',
+      'title': 'Footware Store – E-Commerce App',
       'description':
-      'Created a simple to-do app using Flutter, with a backend powered by Node.js and MongoDB, enabling efficient CRUD operations for effective task management and user productivity.',
-      'imageUrl': 'https://placehold.co/600x400/2C2C2C/E0E0E0?text=ToDo+App',
-      'link': 'https://github.com/payalkumawat/todo-app',
+          "Developed a comprehensive e-commerce mobile application for footwear shopping with a focus on secure authentication, real-time data handling, and seamless payment integration. ",
+      'imageUrl': 'images/project.webp',
+      'link': 'https://https://github.com/FlutterSanjay/Footware_App',
     },
     {
-      'title': 'Attendance Management System',
+      'title': 'Restaurant AI AssistantDuration',
       'description':
-      'An app developed to streamline the attendance-taking process for teachers, saving time and improving efficiency in the classroom.',
-      'imageUrl': 'https://placehold.co/600x400/2C2C2C/E0E0E0?text=Attendance+System',
-      'link': 'https://github.com/payalkumawat/attendance-management-system',
+          'Developed an AI-powered restaurant chatbot with LangChain & Gemini API, created Express.js APIs, frontend UI, custom getMenu tool, and secure environment variable handling, providing dynamic menu recommendations and improved user experience',
+      'imageUrl': 'images/project.webp',
+      'link': 'https://github.com/FlutterSanjay/smart_restorant_chatbot',
     },
+
+    {
+      'title': 'AI Code Reviewer Project',
+      'description':
+          'Developed a web application that uses AI to analyze and review code snippets, providing real-time evaluation and feedback through an intuitive interface. ',
+      'imageUrl': 'images/project.webp',
+      'link': 'https://https://github.com/FlutterSanjay/Code_Reviewer',
+    },
+{
+      'title': 'Flights-Service (Node.js Backend)',
+      'description':
+          'Developed the backend of a flight management system using Node.js, Express.js, and MySQL. Designed relational schemas for flights, passengers, and bookings, and implemented RESTful APIs with user authentication and real-time updates. Applied modular coding practices to ensure a scalable and maintainable architecture.',
+      'imageUrl': 'images/project.webp',
+      'link': 'https://github.com/FlutterSanjay/Flights-Service',
+    },
+    
     // Add more projects as needed
   ];
 
