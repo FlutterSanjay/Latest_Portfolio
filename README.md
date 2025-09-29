@@ -4,7 +4,7 @@ A modern, responsive portfolio website built with Flutter showcasing my projects
 # Screen Shot
 ![](images/p.png)
 
-![Portfolio Preview](https://latest-portfolio-sand.vercel.app/#/home)
+**[🚀 Protfolio Preview ](https://img.shields.io/badge/View-Demo-blue?style=for-the-badge&logo=github)](https://latest-portfolio-sand.vercel.app/#/home)**
 
 ## ✨ Features
 
