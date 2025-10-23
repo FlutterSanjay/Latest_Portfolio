@@ -84,6 +84,8 @@ class NavBar extends GetView<HomeController> {
                   10.horizontalSpace,
                   _navItem('Projects'),
                   10.horizontalSpace,
+                  _navItem('Certificates'),
+                  10.horizontalSpace,
                   _navItem('Education'),
                   10.horizontalSpace,
                   _navItem('Contact'),
@@ -149,7 +151,7 @@ class MobileDrawer extends GetView<HomeController> {
               children: [
                 CircleAvatar(
                   radius: 200.r,
-                  backgroundImage: AssetImage("images/profile_pic.jpeg"),
+                  backgroundImage: AssetImage("images/My_Photo.png"),
                 ),
                 SizedBox(width: 50.w),
                 Column(
@@ -157,7 +159,7 @@ class MobileDrawer extends GetView<HomeController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Payal Kumawat",
+                      "Sanjay Shaw",
                       style: TextStyle(
                         color: AppColors.secondary2Color,
                         fontSize: 60.sp,
@@ -183,6 +185,7 @@ class MobileDrawer extends GetView<HomeController> {
           _drawerNavItem('Skills', Icons.psychology),
           _drawerNavItem('Experience', Icons.work),
           _drawerNavItem('Projects', Icons.workspaces),
+          _drawerNavItem('Certificates', Icons.workspace_premium),
           _drawerNavItem('Education', Icons.school),
           _drawerNavItem('Contact', Icons.email),
         ],

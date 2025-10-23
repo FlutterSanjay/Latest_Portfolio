@@ -20,4 +20,7 @@ class AppColors {
   static const Color buttonBorderColor = Color(0xFF00E676); // Button border
   static const Color socialIconColor = Color(0xFFE0E0E0); // Social icon color
   static const Color whiteBackgroundColor = Color(0xffffffff);
+
+  static const Color cardGradientStart = Color(0xFFE0C3FC); // light purple
+  static const Color cardGradientEnd = Color(0xFF8EC5FC); // light blue
 }

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:get/get.dart';
+import 'package:portfolio/app/modules/home/views/certificate.dart';
 import 'package:portfolio/app/modules/home/views/contact_me.dart';
 import 'package:portfolio/app/modules/home/views/projects.dart';
 import 'package:portfolio/app/modules/home/views/skills.dart';
@@ -412,6 +413,13 @@ class HomeView extends GetView<HomeController> {
             if (isMobile) SizedBox(height: Get.height * 0.05),
             // Projects Section
             SizedBox(key: controller.projectsKey, child: const Projects()),
+
+            if (isMobile) SizedBox(height: Get.height * 0.05),
+            // Certification Section
+            SizedBox(
+              key: controller.certificatesKey,
+              child: const Certifications(),
+            ),
             if (isMobile) SizedBox(height: Get.height * 0.05),
             // Education Section
             SizedBox(key: controller.educationKey, child: const Education()),

@@ -2,12 +2,13 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'dart:html' as html;
+
 
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:html' as html;
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+
   var isDownloading = false.obs;
   var progress = 0.0.obs;
 
@@ -19,6 +20,7 @@ class HomeController extends GetxController {
   final GlobalKey projectsKey = GlobalKey();
   final GlobalKey educationKey = GlobalKey();
   final GlobalKey contactKey = GlobalKey();
+  final GlobalKey certificatesKey = GlobalKey();
 
   List<String> sliderImage = [
     'images/cer.JPG',
@@ -63,6 +65,7 @@ class HomeController extends GetxController {
       'Projects': projectsKey,
       'Education': educationKey,
       'Contact': contactKey,
+      'Certificates': certificatesKey
     };
     // Listen to scroll events to update the active section
     scrollController.addListener(_onScroll);
