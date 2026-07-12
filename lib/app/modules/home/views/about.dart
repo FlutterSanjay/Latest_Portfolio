@@ -180,7 +180,7 @@ class About extends GetView<HomeController> {
               isMobile ? WrapAlignment.center : WrapAlignment.start,
           children: [
             _statCard('4+', 'stat_projects'.tr, Icons.rocket_launch_rounded),
-            _statCard('2+', 'stat_internships'.tr, Icons.work_rounded),
+            _statCard('1+ Yrs', 'stat_internships'.tr, Icons.work_rounded),
             _statCard('7', 'stat_certificates'.tr, Icons.workspace_premium_rounded),
           ],
         ),
