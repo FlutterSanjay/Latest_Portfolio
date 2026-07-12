@@ -256,7 +256,7 @@ class _ExperienceCardState extends State<_ExperienceCard> {
       onExit: (_) => setState(() => _hovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: EdgeInsets.all(isMobile ? 60.r : 24.r),
+        padding: EdgeInsets.all(isMobile ? 18.r : 24.r),
         decoration: BoxDecoration(
           color: _hovered ? AppColors.cardHoverColor : AppColors.cardColor,
           borderRadius: BorderRadius.circular(16.r),
@@ -290,8 +290,8 @@ class _ExperienceCardState extends State<_ExperienceCard> {
               children: [
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: isMobile ? 22.w : 10.w,
-                    vertical: isMobile ? 5.h : 4.h,
+                    horizontal: isMobile ? 10.w : 10.w,
+                    vertical: isMobile ? 4.h : 4.h,
                   ),
                   decoration: BoxDecoration(
                     color: accent.withValues(alpha: 0.12),

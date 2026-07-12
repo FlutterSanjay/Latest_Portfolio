@@ -186,7 +186,7 @@ class _SkillCardState extends State<_SkillCard>
       onExit: (_) => setState(() => _hovered = false),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: EdgeInsets.all(widget.isMobile ? 60.r : 20.r),
+        padding: EdgeInsets.all(widget.isMobile ? 16.r : 20.r),
         decoration: BoxDecoration(
           color: _hovered ? AppColors.cardHoverColor : AppColors.cardColor,
           borderRadius: BorderRadius.circular(16.r),
@@ -213,7 +213,7 @@ class _SkillCardState extends State<_SkillCard>
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(widget.isMobile ? 18.r : 9.r),
+                  padding: EdgeInsets.all(widget.isMobile ? 9.r : 9.r),
                   decoration: BoxDecoration(
                     color: widget.color.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(10.r),
@@ -224,7 +224,7 @@ class _SkillCardState extends State<_SkillCard>
                     size: widget.isMobile ? Get.width * 0.05 : 18.sp,
                   ),
                 ),
-                SizedBox(width: widget.isMobile ? 24.w : 12.w),
+                SizedBox(width: widget.isMobile ? 12.w : 12.w),
                 Expanded(
                   child: Text(
                     widget.title,

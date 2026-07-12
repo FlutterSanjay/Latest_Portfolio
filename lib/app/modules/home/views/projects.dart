@@ -391,7 +391,7 @@ class _GithubReposHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(isMobile ? 50.r : 20.r),
+      padding: EdgeInsets.all(isMobile ? 16.r : 20.r),
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(16.r),
@@ -400,7 +400,7 @@ class _GithubReposHeader extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: EdgeInsets.all(isMobile ? 18.r : 10.r),
+            padding: EdgeInsets.all(isMobile ? 10.r : 10.r),
             decoration: BoxDecoration(
               color: const Color(0xFF24292E).withValues(alpha: 0.6),
               borderRadius: BorderRadius.circular(10.r),
@@ -506,7 +506,7 @@ class _SkeletonCardState extends State<_SkeletonCard>
       builder: (_, __) {
         final opacity = 0.3 + (_anim.value * 0.3);
         return Container(
-          padding: EdgeInsets.all(widget.isMobile ? 50.r : 18.r),
+          padding: EdgeInsets.all(widget.isMobile ? 16.r : 18.r),
           decoration: BoxDecoration(
             color: AppColors.cardColor,
             borderRadius: BorderRadius.circular(12.r),
@@ -557,7 +557,7 @@ class _ErrorState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(isMobile ? 50.r : 32.r),
+      padding: EdgeInsets.all(isMobile ? 16.r : 32.r),
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(16.r),
@@ -689,7 +689,7 @@ class _GitHubRepoCardState extends State<_GitHubRepoCard> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           transform: Matrix4.translationValues(0.0, _hovered ? -4.0 : 0.0, 0.0),
-          padding: EdgeInsets.all(isMobile ? 50.r : 16.r),
+          padding: EdgeInsets.all(isMobile ? 16.r : 16.r),
           decoration: BoxDecoration(
             color: _hovered ? AppColors.cardHoverColor : AppColors.cardColor,
             borderRadius: BorderRadius.circular(12.r),
@@ -835,7 +835,7 @@ class _GitHubRepoCardState extends State<_GitHubRepoCard> {
   }
 }
 
-// ─── Featured Card (same as before) ──────────────────────────────────────────
+// ─── Featured Card ────────────────────────────────────────────────────────────
 class _FeaturedCard extends StatefulWidget {
   final Map<String, dynamic> project;
   final bool isMobile;
@@ -858,151 +858,150 @@ class _FeaturedCardState extends State<_FeaturedCard> {
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       cursor: SystemMouseCursors.click,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        transform: Matrix4.translationValues(0.0, _hovered ? -6.0 : 0.0, 0.0),
-        decoration: BoxDecoration(
-          color: _hovered ? AppColors.cardHoverColor : AppColors.cardColor,
-          borderRadius: BorderRadius.circular(16.r),
-          border: Border.all(
-            color: _hovered
-                ? accent.withValues(alpha: 0.45)
-                : AppColors.borderColor,
-            width: 1,
-          ),
-          boxShadow: [
-            BoxShadow(
+      child: GestureDetector(
+        onTap: () {
+          if (p['link'] != null) {
+            Get.find<HomeController>().openUrl(p['link'] as String);
+          }
+        },
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 220),
+          transform: Matrix4.translationValues(0.0, _hovered ? -6.0 : 0.0, 0.0),
+          decoration: BoxDecoration(
+            color: _hovered ? AppColors.cardHoverColor : AppColors.cardColor,
+            borderRadius: BorderRadius.circular(16.r),
+            border: Border.all(
               color: _hovered
-                  ? accent.withValues(alpha: 0.18)
-                  : Colors.black.withValues(alpha: 0.25),
-              blurRadius: _hovered ? 28 : 8,
-              offset: Offset(0, _hovered ? 12 : 4),
+                  ? accent.withValues(alpha: 0.45)
+                  : AppColors.borderColor,
+              width: 1,
             ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Image/icon header
-            Container(
-              height: isMobile ? 180.h : 160.h,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    accent.withValues(alpha: 0.2),
-                    accent.withValues(alpha: 0.05),
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+            boxShadow: [
+              BoxShadow(
+                color: _hovered
+                    ? accent.withValues(alpha: 0.18)
+                    : Colors.black.withValues(alpha: 0.25),
+                blurRadius: _hovered ? 28 : 8,
+                offset: Offset(0, _hovered ? 12 : 4),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Image/icon header
+              Container(
+                height: isMobile ? 130.h : 160.h,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      accent.withValues(alpha: 0.2),
+                      accent.withValues(alpha: 0.05),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(16.r)),
                 ),
-                borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(16.r)),
-              ),
-              child: Stack(
-                children: [
-                  Center(
-                    child: Icon(
-                      p['icon'] as IconData,
-                      size: isMobile ? 72 : 64,
-                      color: accent.withValues(alpha: 0.35),
-                    ),
-                  ),
-                  Positioned(
-                    top: isMobile ? 14.h : 12.h,
-                    left: isMobile ? 14.w : 14.w,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: isMobile ? 18.w : 10.w,
-                        vertical: isMobile ? 5.h : 4.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: accent.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(100.r),
-                        border: Border.all(
-                          color: accent.withValues(alpha: 0.35),
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        p['category'] as String,
-                        style: TextStyle(
-                          color: accent,
-                          fontSize: isMobile ? Get.width * 0.025 : 10.sp,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Content
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(isMobile ? 60.r : 20.r),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Stack(
                   children: [
-                    Text(
-                      p['title'] as String,
-                      style: TextStyle(
-                        color: AppColors.textColor,
-                        fontSize: isMobile ? Get.width * 0.045 : 17.sp,
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: -0.3,
+                    Center(
+                      child: Icon(
+                        p['icon'] as IconData,
+                        size: isMobile ? 54 : 64,
+                        color: accent.withValues(alpha: 0.35),
                       ),
                     ),
-                    SizedBox(height: 10.h),
-                    Expanded(
-                      child: Text(
-                        p['desc_key'].toString().tr,
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: isMobile ? Get.width * 0.031 : 12.sp,
-                          height: 1.65,
+                    Positioned(
+                      top: isMobile ? 12.h : 12.h,
+                      left: isMobile ? 12.w : 14.w,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: isMobile ? 14.w : 10.w,
+                          vertical: isMobile ? 4.h : 4.h,
                         ),
-                        maxLines: 4,
-                        overflow: TextOverflow.ellipsis,
+                        decoration: BoxDecoration(
+                          color: accent.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(100.r),
+                          border: Border.all(
+                            color: accent.withValues(alpha: 0.35),
+                            width: 1,
+                          ),
+                        ),
+                        child: Text(
+                          p['category'] as String,
+                          style: TextStyle(
+                            color: accent,
+                            fontSize: isMobile ? Get.width * 0.025 : 10.sp,
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
                       ),
                     ),
-                    SizedBox(height: 14.h),
-                    Wrap(
-                      spacing: 6.w,
-                      runSpacing: 6.h,
-                      children: (p['tech'] as List<String>).map((t) {
-                        return Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: isMobile ? 14.w : 8.w,
-                            vertical: 3.h,
+                  ],
+                ),
+              ),
+              // Content
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(isMobile ? 16.r : 20.r),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        p['title'] as String,
+                        style: TextStyle(
+                          color: AppColors.textColor,
+                          fontSize: isMobile ? Get.width * 0.042 : 17.sp,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: -0.3,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Expanded(
+                        child: Text(
+                          p['desc_key'].toString().tr,
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: isMobile ? Get.width * 0.03 : 12.sp,
+                            height: 1.65,
                           ),
-                          decoration: BoxDecoration(
-                            color: AppColors.surfaceColor,
-                            borderRadius: BorderRadius.circular(4.r),
-                            border: Border.all(
-                                color: AppColors.borderColor, width: 1),
-                          ),
-                          child: Text(
-                            t,
-                            style: TextStyle(
-                              color: AppColors.textMuted,
-                              fontSize:
-                                  isMobile ? Get.width * 0.025 : 10.sp,
-                              fontWeight: FontWeight.w500,
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(height: 10.h),
+                      Wrap(
+                        spacing: 6.w,
+                        runSpacing: 6.h,
+                        children: (p['tech'] as List<String>).map((t) {
+                          return Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: isMobile ? 12.w : 8.w,
+                              vertical: 3.h,
                             ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 14.h),
-                    GestureDetector(
-                      onTap: () {
-                        if (p['link'] != null) {
-                          Get.find<HomeController>()
-                              .openUrl(p['link'] as String);
-                        }
-                      },
-                      child: Row(
+                            decoration: BoxDecoration(
+                              color: AppColors.surfaceColor,
+                              borderRadius: BorderRadius.circular(4.r),
+                              border: Border.all(
+                                  color: AppColors.borderColor, width: 1),
+                            ),
+                            child: Text(
+                              t,
+                              style: TextStyle(
+                                color: AppColors.textMuted,
+                                fontSize:
+                                    isMobile ? Get.width * 0.025 : 10.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: 12.h),
+                      Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(
@@ -1022,12 +1021,12 @@ class _FeaturedCardState extends State<_FeaturedCard> {
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

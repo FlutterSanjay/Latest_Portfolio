@@ -171,114 +171,124 @@ class MobileDrawer extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: Get.width * 0.72,
-      backgroundColor: AppColors.surfaceColor,
-      child: Column(
-        children: [
-          // ─── Header ─────────────────────────────────────────────────────────
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.fromLTRB(24.w, 60.h, 24.w, 28.h),
-            decoration: const BoxDecoration(
-              color: AppColors.cardColor,
-              border: Border(
-                bottom: BorderSide(color: AppColors.borderColor, width: 1),
+      width: Get.width * 0.75,
+      backgroundColor: AppColors.backgroundColor,
+      child: SafeArea(
+        child: Column(
+          children: [
+            // ─── Header ─────────────────────────────────────────────────────────
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
+              decoration: const BoxDecoration(
+                color: AppColors.surfaceColor,
+                border: Border(
+                  bottom: BorderSide(color: AppColors.borderColor, width: 1),
+                ),
               ),
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 52,
-                  height: 52,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(14),
-                    gradient: AppColors.primaryGradient,
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primaryColor.withValues(alpha: 0.4),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
-                    child: Image.asset(
-                      'images/My_Photo.png',
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, __, ___) => const Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 30,
+              child: Row(
+                children: [
+                  Container(
+                    width: 48,
+                    height: 48,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      gradient: AppColors.primaryGradient,
+                      boxShadow: [
+                        BoxShadow(
+                          color: AppColors.primaryColor.withValues(alpha: 0.3),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'images/My_Photo.png',
+                        fit: BoxFit.cover,
+                        errorBuilder: (_, __, ___) => const Icon(
+                          Icons.person,
+                          color: Colors.white,
+                          size: 24,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(width: 14.w),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Sanjay Shaw',
-                        style: TextStyle(
-                          fontSize: 56.sp,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.textColor,
-                        ),
-                      ),
-                      SizedBox(height: 2.h),
-                      ShaderMask(
-                        shaderCallback: (b) =>
-                            AppColors.accentGradient.createShader(b),
-                        child: Text(
-                          'Flutter Developer',
+                  SizedBox(width: 12.w),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'Sanjay Shaw',
                           style: TextStyle(
-                            fontSize: 44.sp,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textColor,
+                            letterSpacing: 0.2,
                           ),
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 2.h),
+                        ShaderMask(
+                          shaderCallback: (b) =>
+                              AppColors.accentGradient.createShader(b),
+                          child: Text(
+                            'Flutter Developer',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close_rounded, color: AppColors.textMuted),
+                    onPressed: () => Get.back(),
+                  ),
+                ],
+              ),
+            ),
+            // ─── Nav items ──────────────────────────────────────────────────────
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
+                children: [
+                  _drawerItem('Home', 'nav_home'.tr, Icons.home_rounded),
+                  _drawerItem('About', 'nav_about'.tr, Icons.person_rounded),
+                  _drawerItem('Skills', 'nav_skills'.tr, Icons.psychology_rounded),
+                  _drawerItem('Experience', 'nav_experience'.tr, Icons.work_rounded),
+                  _drawerItem('Projects', 'nav_projects'.tr, Icons.rocket_launch_rounded),
+                  _drawerItem('Certificates', 'nav_certificates'.tr, Icons.workspace_premium_rounded),
+                  _drawerItem('Education', 'nav_education'.tr, Icons.school_rounded),
+                  _drawerItem('Contact', 'nav_contact'.tr, Icons.mail_rounded),
+                ],
+              ),
+            ),
+            // ─── Footer ─────────────────────────────────────────────────────────
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 16.h),
+              decoration: const BoxDecoration(
+                border: Border(
+                    top: BorderSide(color: AppColors.borderColor, width: 1)),
+              ),
+              child: Center(
+                child: Text(
+                  '© 2025 Sanjay Shaw',
+                  style: TextStyle(
+                    fontSize: 11.sp,
+                    color: AppColors.textMuted,
+                    letterSpacing: 0.5,
                   ),
                 ),
-              ],
-            ),
-          ),
-          // ─── Nav items ──────────────────────────────────────────────────────
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
-              children: [
-                _drawerItem('Home', 'nav_home'.tr, Icons.home_rounded),
-                _drawerItem('About', 'nav_about'.tr, Icons.person_rounded),
-                _drawerItem('Skills', 'nav_skills'.tr, Icons.psychology_rounded),
-                _drawerItem('Experience', 'nav_experience'.tr, Icons.work_rounded),
-                _drawerItem('Projects', 'nav_projects'.tr, Icons.rocket_launch_rounded),
-                _drawerItem('Certificates', 'nav_certificates'.tr, Icons.workspace_premium_rounded),
-                _drawerItem('Education', 'nav_education'.tr, Icons.school_rounded),
-                _drawerItem('Contact', 'nav_contact'.tr, Icons.mail_rounded),
-              ],
-            ),
-          ),
-          // ─── Footer ─────────────────────────────────────────────────────────
-          Container(
-            padding: EdgeInsets.all(20.w),
-            decoration: const BoxDecoration(
-              border: Border(
-                  top: BorderSide(color: AppColors.borderColor, width: 1)),
-            ),
-            child: Text(
-              '© 2025 Sanjay Shaw',
-              style: TextStyle(
-                fontSize: 36.sp,
-                color: AppColors.textMuted,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -286,61 +296,65 @@ class MobileDrawer extends GetView<HomeController> {
   Widget _drawerItem(String id, String label, IconData icon) {
     return Obx(() {
       final isActive = controller.activeSection.value == id;
-      return InkWell(
-        borderRadius: BorderRadius.circular(10),
-        onTap: () {
-          controller.scrollToSection(id);
-          Get.back();
-        },
-        child: Container(
-          margin: EdgeInsets.symmetric(vertical: 3.h),
-          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
-          decoration: BoxDecoration(
-            color: isActive
-                ? AppColors.primaryColor.withValues(alpha: 0.12)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(10),
-            border: isActive
-                ? Border.all(
-                    color: AppColors.primaryColor.withValues(alpha: 0.3))
-                : null,
-          ),
-          child: Row(
-            children: [
-              Icon(
-                icon,
-                size: 55.sp,
-                color: isActive
-                    ? AppColors.primaryLight
-                    : AppColors.textSecondary,
-              ),
-              SizedBox(width: 40.w),
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: 54.sp,
-                  fontWeight:
-                      isActive ? FontWeight.w600 : FontWeight.w400,
+      return MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(10),
+          onTap: () {
+            controller.scrollToSection(id);
+            Get.back();
+          },
+          child: Container(
+            margin: EdgeInsets.symmetric(vertical: 4.h),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+            decoration: BoxDecoration(
+              color: isActive
+                  ? AppColors.primaryColor.withValues(alpha: 0.12)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+              border: isActive
+                  ? Border.all(
+                      color: AppColors.primaryColor.withValues(alpha: 0.3))
+                  : null,
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  icon,
+                  size: 20.sp,
                   color: isActive
-                      ? AppColors.textColor
+                      ? AppColors.primaryLight
                       : AppColors.textSecondary,
                 ),
-              ),
-              if (isActive) ...[
-                const Spacer(),
-                Container(
-                  width: 6,
-                  height: 6,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primaryLight,
+                SizedBox(width: 14.w),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight:
+                        isActive ? FontWeight.w600 : FontWeight.w400,
+                    color: isActive
+                        ? AppColors.textColor
+                        : AppColors.textSecondary,
                   ),
                 ),
+                if (isActive) ...[
+                  const Spacer(),
+                  Container(
+                    width: 6,
+                    height: 6,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.primaryLight,
+                    ),
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       );
     });
   }
 }
+

@@ -103,7 +103,7 @@ class _EducationCardState extends State<_EducationCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         transform: Matrix4.translationValues(0, _hovered ? -4.0 : 0.0, 0),
-        padding: EdgeInsets.all(isMobile ? 55.r : 22.r),
+        padding: EdgeInsets.all(isMobile ? 16.r : 22.r),
         decoration: BoxDecoration(
           color: _hovered ? AppColors.cardHoverColor : AppColors.cardColor,
           borderRadius: BorderRadius.circular(16.r),
@@ -130,7 +130,7 @@ class _EducationCardState extends State<_EducationCard> {
             Row(
               children: [
                 Container(
-                  padding: EdgeInsets.all(isMobile ? 18.r : 10.r),
+                  padding: EdgeInsets.all(isMobile ? 10.r : 10.r),
                   decoration: BoxDecoration(
                     color: accent.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(12.r),
@@ -144,8 +144,8 @@ class _EducationCardState extends State<_EducationCard> {
                 const Spacer(),
                 Container(
                   padding: EdgeInsets.symmetric(
-                    horizontal: isMobile ? 18.w : 10.w,
-                    vertical: isMobile ? 5.h : 4.h,
+                    horizontal: isMobile ? 10.w : 10.w,
+                    vertical: isMobile ? 4.h : 4.h,
                   ),
                   decoration: BoxDecoration(
                     color: accent.withValues(alpha: 0.1),
