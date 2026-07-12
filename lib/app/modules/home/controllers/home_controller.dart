@@ -1,18 +1,19 @@
+import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter/foundation.dart' show kIsWeb;
-
-
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
-import 'dart:html' as html;
+import 'package:path_provider/path_provider.dart';
+import 'package:open_file/open_file.dart';
+import 'dart:io';
 
 class HomeController extends GetxController {
-
   var isDownloading = false.obs;
   var progress = 0.0.obs;
 
-  // GlobalKeys for each section to enable scrolling
+  // ─── GlobalKeys for scroll-to-section ────────────────────────────────────────
   final GlobalKey homeKey = GlobalKey();
   final GlobalKey aboutKey = GlobalKey();
   final GlobalKey skillsKey = GlobalKey();
@@ -28,31 +29,51 @@ class HomeController extends GetxController {
     'images/two.jpeg',
     'images/three.jpeg',
   ];
-  // Map to easily access GlobalKeys by section name
+
   late Map<String, GlobalKey> selectionKeys;
 
-  // ScrollController for the SingleChildScrollView in HomeView
   final ScrollController scrollController = ScrollController();
 
-  // textEditingController for contact
+  // ─── Contact form controllers ─────────────────────────────────────────────────
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController subjectController = TextEditingController();
   final TextEditingController messageController = TextEditingController();
 
-  // for moving image up and down
+  // ─── Reactive state ──────────────────────────────────────────────────────────
   RxBool isMoveUp = true.obs;
+  var hoveredSection = ''.obs;
+  var activeSection = 'Home'.obs;
+  var selectedCategory = 'All'.obs; // Project category filter
+  var isSendingMessage = false.obs;
 
-  // animation for this image
+  // ─── GitHub repos ─────────────────────────────────────────────────────────────
+  var githubRepos = <Map<String, dynamic>>[].obs;
+  var isLoadingRepos = false.obs;
+  var showAllProjects = false.obs;
+  var reposError = ''.obs;
+
+  static const String _githubUsername = 'FlutterSanjay';
+
+  // ─── Float animation ──────────────────────────────────────────────────────────
   void startAnimation() async {
     while (true) {
-      await Future.delayed(const Duration(milliseconds: 1600));
+      await Future.delayed(const Duration(milliseconds: 1800));
       isMoveUp.value = !isMoveUp.value;
     }
   }
 
-  var hoveredSection = ''.obs;
-  var activeSection = 'Home'.obs;
+  // ─── Ordered section list for scroll detection ────────────────────────────────
+  static const List<String> _sectionOrder = [
+    'Home',
+    'About',
+    'Skills',
+    'Experience',
+    'Projects',
+    'Certificates',
+    'Education',
+    'Contact',
+  ];
 
   @override
   void onInit() {
@@ -65,52 +86,82 @@ class HomeController extends GetxController {
       'Projects': projectsKey,
       'Education': educationKey,
       'Contact': contactKey,
-      'Certificates': certificatesKey
+      'Certificates': certificatesKey,
     };
-    // Listen to scroll events to update the active section
     scrollController.addListener(_onScroll);
     startAnimation();
   }
 
-  // Validation
+  // ─── Scroll listener: auto-update active section ──────────────────────────────
+  void _onScroll() {
+    for (final section in _sectionOrder.reversed) {
+      final key = selectionKeys[section];
+      if (key?.currentContext != null) {
+        final box = key!.currentContext!.findRenderObject() as RenderBox?;
+        if (box != null) {
+          final dy = box.localToGlobal(Offset.zero).dy;
+          if (dy <= 120) {
+            if (activeSection.value != section) {
+              activeSection.value = section;
+            }
+            break;
+          }
+        }
+      }
+    }
+  }
+
+  // ─── Form validation ──────────────────────────────────────────────────────────
   bool validateFields() {
     if (nameController.text.trim().isEmpty ||
         emailController.text.trim().isEmpty ||
         subjectController.text.trim().isEmpty ||
         messageController.text.trim().isEmpty) {
       Get.snackbar(
-        "Error",
-        "All fields are required",
+        'Missing Fields',
+        'Please fill in all fields before sending.',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEF4444),
         colorText: Colors.white,
+        borderRadius: 12,
+        margin: const EdgeInsets.all(16),
       );
       return false;
     }
     if (!GetUtils.isEmail(emailController.text.trim())) {
       Get.snackbar(
-        "Error",
-        "Enter a valid email",
+        'Invalid Email',
+        'Please enter a valid email address.',
         snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.red,
+        backgroundColor: const Color(0xFFEF4444),
         colorText: Colors.white,
+        borderRadius: 12,
+        margin: const EdgeInsets.all(16),
       );
       return false;
     }
     return true;
   }
 
-  // Send message
+  // ─── Send message ─────────────────────────────────────────────────────────────
   Future<void> sendMessage() async {
     if (!validateFields()) return;
-
+    isSendingMessage.value = true;
     await Future.delayed(const Duration(seconds: 2)); // simulate API call
-
-    // Clear fields
+    isSendingMessage.value = false;
     nameController.clear();
     emailController.clear();
     subjectController.clear();
     messageController.clear();
+    Get.snackbar(
+      'Message Sent! 🎉',
+      'Thanks for reaching out. I\'ll get back to you soon.',
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: const Color(0xFF10B981),
+      colorText: Colors.white,
+      borderRadius: 12,
+      margin: const EdgeInsets.all(16),
+    );
   }
 
   @override
@@ -122,38 +173,41 @@ class HomeController extends GetxController {
   @override
   void onClose() {
     scrollController.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    subjectController.dispose();
+    messageController.dispose();
     super.onClose();
   }
 
-  void _onScroll() {}
-
+  // ─── Smooth scroll to section ─────────────────────────────────────────────────
   void scrollToSection(String sectionName) {
     activeSection.value = sectionName;
     final key = selectionKeys[sectionName];
-
     if (key != null) {
-      // Ensure the widget is rendered before trying to scroll to it
       WidgetsBinding.instance.addPostFrameCallback((_) {
-        final context = key.currentContext;
-        if (context != null) {
+        final ctx = key.currentContext;
+        if (ctx != null) {
           Scrollable.ensureVisible(
-            context,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeInOut,
-            alignment: 0.0, // Scroll to the top of the target widget
+            ctx,
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeInOutCubic,
+            alignment: 0.0,
           );
         }
       });
     }
   }
 
+  // ─── Open external URL ────────────────────────────────────────────────────────
   Future<void> openUrl(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url));
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
       Get.snackbar(
         'Error',
-        'Could not launch $url',
+        'Could not open: $url',
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Get.theme.colorScheme.error,
         colorText: Get.theme.colorScheme.onError,
@@ -161,26 +215,76 @@ class HomeController extends GetxController {
     }
   }
 
+  // ─── Download / open PDF resume ───────────────
   Future<void> downloadPdf(String url, String fileName) async {
     try {
-      if (kIsWeb) {
-        // For web, just open in new tab
-        final anchor =
-            html.AnchorElement(href: url)
-              ..download = fileName
-              ..target = '_blank';
-        html.document.body!.append(anchor);
-        anchor.click();
-        anchor.remove();
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+        Get.snackbar(
+          'Resume Opened',
+          'Your resume is opening in the browser.',
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: const Color(0xFF10B981),
+          colorText: Colors.white,
+          borderRadius: 12,
+          margin: const EdgeInsets.all(16),
+        );
       } else {
-        // For mobile, use url_launcher
-        if (await canLaunchUrl(Uri.parse(url))) {
-          await launchUrl(Uri.parse(url));
-        }
+        Get.snackbar('Error', 'Could not open resume.');
       }
-      Get.snackbar("Success", "PDF opened");
     } catch (e) {
-      Get.snackbar("Error", "Could not open PDF");
+      Get.snackbar('Error', 'Something went wrong while opening resume.');
+    }
+  }
+
+  // ─── Fetch all public GitHub repos ───────────────────────────────────────────
+  Future<void> fetchGithubRepos() async {
+    if (isLoadingRepos.value) return;
+    showAllProjects.value = true;
+    isLoadingRepos.value = true;
+    reposError.value = '';
+    try {
+      final uri = Uri.parse(
+        'https://api.github.com/users/$_githubUsername/repos'
+        '?sort=updated&per_page=100&type=public',
+      );
+      final response = await http.get(uri, headers: {
+        'Accept': 'application/vnd.github.v3+json',
+      });
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        // Filter out forks, sort by stars then updated_at
+        final repos = data
+            .cast<Map<String, dynamic>>()
+            .where((r) => r['fork'] == false)
+            .toList()
+          ..sort((a, b) {
+            final starsA = (a['stargazers_count'] as int? ?? 0);
+            final starsB = (b['stargazers_count'] as int? ?? 0);
+            if (starsB != starsA) return starsB.compareTo(starsA);
+            return (b['updated_at'] as String)
+                .compareTo(a['updated_at'] as String);
+          });
+        githubRepos.value = repos;
+      } else if (response.statusCode == 403) {
+        reposError.value =
+            'GitHub API rate limit reached. Please try again later.';
+      } else {
+        reposError.value = 'Failed to load repositories (${response.statusCode}).';
+      }
+    } catch (e) {
+      reposError.value = 'Network error. Check your connection and try again.';
+    } finally {
+      isLoadingRepos.value = false;
+    }
+  }
+
+  void toggleAllProjects() {
+    if (!showAllProjects.value) {
+      fetchGithubRepos();
+    } else {
+      showAllProjects.value = false;
     }
   }
 }

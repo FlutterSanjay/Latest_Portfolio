@@ -4,192 +4,340 @@ import 'package:get/get.dart';
 import 'package:portfolio/app/modules/home/controllers/home_controller.dart';
 import 'package:portfolio/utils/app_colors.dart';
 
+// ─── Desktop Navigation Bar ──────────────────────────────────────────────────
 class NavBar extends GetView<HomeController> {
   const NavBar({super.key});
 
-  Widget _navItem(String title) {
-    return Obx(() {
-      bool isActive = controller.activeSection.value == title;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 60.w),
+      decoration: BoxDecoration(
+        color: AppColors.navBarColor.withValues(alpha: 0.95),
+        border: const Border(
+          bottom: BorderSide(color: AppColors.borderColor, width: 1),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // ─── Logo ───────────────────────────────────────────────────────────
+          _LogoBrand(),
+          // ─── Nav items ──────────────────────────────────────────────────────
+          Row(
+            children: [
+              _navItem('Home', 'nav_home'.tr),
+              _navItem('About', 'nav_about'.tr),
+              _navItem('Skills', 'nav_skills'.tr),
+              _navItem('Experience', 'nav_experience'.tr),
+              _navItem('Projects', 'nav_projects'.tr),
+              _navItem('Certificates', 'nav_certificates'.tr),
+              _navItem('Education', 'nav_education'.tr),
+              _navItem('Contact', 'nav_contact'.tr),
+              SizedBox(width: 20.w),
+              // ─── Hire me CTA ───────────────────────────────────────────────
+              _HireMeButton(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
+  Widget _navItem(String id, String label) {
+    return Obx(() {
+      final isActive = controller.activeSection.value == id;
       return MouseRegion(
-        onEnter: (_) => controller.hoveredSection.value = title,
+        onEnter: (_) => controller.hoveredSection.value = id,
         onExit: (_) => controller.hoveredSection.value = '',
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextButton(
-              onPressed: () {
-                controller.scrollToSection(title);
-              },
+        cursor: SystemMouseCursors.click,
+        child: Obx(() {
+          final isHovered = controller.hoveredSection.value == id;
+          return GestureDetector(
+            onTap: () => controller.scrollToSection(id),
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 4.w),
+              padding:
+                  EdgeInsets.symmetric(horizontal: 14.w, vertical: 8.h),
+              decoration: BoxDecoration(
+                color: isActive
+                    ? AppColors.primaryColor.withValues(alpha: 0.15)
+                    : isHovered
+                        ? AppColors.glassColor
+                        : Colors.transparent,
+                borderRadius: BorderRadius.circular(8.r),
+                border: isActive
+                    ? Border.all(
+                        color: AppColors.primaryColor.withValues(alpha: 0.4),
+                        width: 1,
+                      )
+                    : null,
+              ),
               child: Text(
-                title,
+                label,
                 style: TextStyle(
-                  color:
-                      isActive ? AppColors.secondaryColor : AppColors.textColor,
-                  fontSize: 28.sp,
-                  fontWeight: isActive ? FontWeight.w700 : FontWeight.w200,
+                  fontSize: 14.sp,
+                  fontWeight:
+                      isActive ? FontWeight.w600 : FontWeight.w400,
+                  color: isActive
+                      ? AppColors.primaryLight
+                      : isHovered
+                          ? AppColors.textColor
+                          : AppColors.textSecondary,
+                  letterSpacing: 0.3,
                 ),
               ),
             ),
-            // underline effect
-            controller.activeSection.value != title
-                ? AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                  height: 2,
-                  width:
-                      (isActive || controller.hoveredSection.value == title)
-                          ? 70.w
-                          : 0,
-                  decoration: BoxDecoration(
-                    color: AppColors.secondaryColor,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                )
-                : SizedBox(),
-          ],
-        ),
+          );
+        }),
       );
     });
   }
+}
 
+// ─── Logo Brand Widget ────────────────────────────────────────────────────────
+class _LogoBrand extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        // ✅ Desktop / Web layout
-        return Container(
-          padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 35.w),
-          color: AppColors.backgroundColor,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Portfolio',
-                style: TextStyle(
-                  color: AppColors.textColor,
-                  fontSize: 30.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Row(
-                children: [
-                  _navItem('Home'),
-                  10.horizontalSpace,
-                  _navItem('About'),
-                  10.horizontalSpace,
-                  _navItem('Skills'),
-                  10.horizontalSpace,
-                  _navItem('Experience'),
-                  10.horizontalSpace,
-                  _navItem('Projects'),
-                  10.horizontalSpace,
-                  _navItem('Certificates'),
-                  10.horizontalSpace,
-                  _navItem('Education'),
-                  10.horizontalSpace,
-                  _navItem('Contact'),
-                ],
-              ),
-            ],
+    return Row(
+      children: [
+        ShaderMask(
+          shaderCallback: (bounds) =>
+              AppColors.primaryGradient.createShader(bounds),
+          child: Text(
+            'SS',
+            style: TextStyle(
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w800,
+              color: Colors.white,
+              letterSpacing: -0.5,
+            ),
           ),
-        );
-      },
+        ),
+        SizedBox(width: 10.w),
+        Text(
+          'Sanjay Shaw',
+          style: TextStyle(
+            fontSize: 15.sp,
+            fontWeight: FontWeight.w500,
+            color: AppColors.textSecondary,
+            letterSpacing: 0.3,
+          ),
+        ),
+      ],
     );
   }
 }
 
-// ✅ Drawer for Mobile Navigation
-class MobileDrawer extends GetView<HomeController> {
-  const MobileDrawer({super.key});
-
-  Widget _drawerNavItem(String title, IconData icon) {
-    return Obx(
-      () => ListTile(
-        leading: Icon(
-          icon,
-          color:
-              controller.activeSection.value == title
-                  ? AppColors.secondaryColor
-                  : AppColors.textColor,
+// ─── Hire Me Button ───────────────────────────────────────────────────────────
+class _HireMeButton extends GetView<HomeController> {
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => controller.scrollToSection('Contact'),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        decoration: BoxDecoration(
+          gradient: AppColors.primaryGradient,
+          borderRadius: BorderRadius.circular(8.r),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primaryColor.withValues(alpha: 0.35),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
-        title: Text(
-          title,
+        child: Text(
+          'Hire Me',
           style: TextStyle(
-            color:
-                controller.activeSection.value == title
-                    ? AppColors.secondaryColor
-                    : AppColors.textColor,
-            fontSize: 60.sp,
-            fontWeight:
-                controller.activeSection.value == title
-                    ? FontWeight.bold
-                    : FontWeight.normal,
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w600,
+            color: Colors.white,
           ),
         ),
-        onTap: () {
-          controller.scrollToSection(title);
-          Get.back();
-        },
       ),
     );
   }
+}
+
+// ─── Mobile Drawer ────────────────────────────────────────────────────────────
+class MobileDrawer extends GetView<HomeController> {
+  const MobileDrawer({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      width: Get.width * 0.6,
-      backgroundColor: AppColors.backgroundColor,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: const BoxDecoration(color: AppColors.cardColor),
+      width: Get.width * 0.72,
+      backgroundColor: AppColors.surfaceColor,
+      child: Column(
+        children: [
+          // ─── Header ─────────────────────────────────────────────────────────
+          Container(
+            width: double.infinity,
+            padding: EdgeInsets.fromLTRB(24.w, 60.h, 24.w, 28.h),
+            decoration: const BoxDecoration(
+              color: AppColors.cardColor,
+              border: Border(
+                bottom: BorderSide(color: AppColors.borderColor, width: 1),
+              ),
+            ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 200.r,
-                  backgroundImage: AssetImage("images/My_Photo.png"),
+                Container(
+                  width: 52,
+                  height: 52,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    gradient: AppColors.primaryGradient,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primaryColor.withValues(alpha: 0.4),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.asset(
+                      'images/My_Photo.png',
+                      fit: BoxFit.cover,
+                      errorBuilder: (_, __, ___) => const Icon(
+                        Icons.person,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                  ),
                 ),
-                SizedBox(width: 50.w),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Sanjay Shaw",
-                      style: TextStyle(
-                        color: AppColors.secondary2Color,
-                        fontSize: 60.sp,
-                        fontWeight: FontWeight.w600,
+                SizedBox(width: 14.w),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Sanjay Shaw',
+                        style: TextStyle(
+                          fontSize: 56.sp,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.textColor,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 5.h),
-                    Text(
-                      "Flutter Developer",
-                      style: TextStyle(
-                        color: AppColors.textLightColor,
-                        fontSize: 45.sp,
-                        fontWeight: FontWeight.w600,
+                      SizedBox(height: 2.h),
+                      ShaderMask(
+                        shaderCallback: (b) =>
+                            AppColors.accentGradient.createShader(b),
+                        child: Text(
+                          'Flutter Developer',
+                          style: TextStyle(
+                            fontSize: 44.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          _drawerNavItem('Home', Icons.home),
-          _drawerNavItem('About', Icons.person),
-          _drawerNavItem('Skills', Icons.psychology),
-          _drawerNavItem('Experience', Icons.work),
-          _drawerNavItem('Projects', Icons.workspaces),
-          _drawerNavItem('Certificates', Icons.workspace_premium),
-          _drawerNavItem('Education', Icons.school),
-          _drawerNavItem('Contact', Icons.email),
+          // ─── Nav items ──────────────────────────────────────────────────────
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
+              children: [
+                _drawerItem('Home', 'nav_home'.tr, Icons.home_rounded),
+                _drawerItem('About', 'nav_about'.tr, Icons.person_rounded),
+                _drawerItem('Skills', 'nav_skills'.tr, Icons.psychology_rounded),
+                _drawerItem('Experience', 'nav_experience'.tr, Icons.work_rounded),
+                _drawerItem('Projects', 'nav_projects'.tr, Icons.rocket_launch_rounded),
+                _drawerItem('Certificates', 'nav_certificates'.tr, Icons.workspace_premium_rounded),
+                _drawerItem('Education', 'nav_education'.tr, Icons.school_rounded),
+                _drawerItem('Contact', 'nav_contact'.tr, Icons.mail_rounded),
+              ],
+            ),
+          ),
+          // ─── Footer ─────────────────────────────────────────────────────────
+          Container(
+            padding: EdgeInsets.all(20.w),
+            decoration: const BoxDecoration(
+              border: Border(
+                  top: BorderSide(color: AppColors.borderColor, width: 1)),
+            ),
+            child: Text(
+              '© 2025 Sanjay Shaw',
+              style: TextStyle(
+                fontSize: 36.sp,
+                color: AppColors.textMuted,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Widget _drawerItem(String id, String label, IconData icon) {
+    return Obx(() {
+      final isActive = controller.activeSection.value == id;
+      return InkWell(
+        borderRadius: BorderRadius.circular(10),
+        onTap: () {
+          controller.scrollToSection(id);
+          Get.back();
+        },
+        child: Container(
+          margin: EdgeInsets.symmetric(vertical: 3.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
+          decoration: BoxDecoration(
+            color: isActive
+                ? AppColors.primaryColor.withValues(alpha: 0.12)
+                : Colors.transparent,
+            borderRadius: BorderRadius.circular(10),
+            border: isActive
+                ? Border.all(
+                    color: AppColors.primaryColor.withValues(alpha: 0.3))
+                : null,
+          ),
+          child: Row(
+            children: [
+              Icon(
+                icon,
+                size: 55.sp,
+                color: isActive
+                    ? AppColors.primaryLight
+                    : AppColors.textSecondary,
+              ),
+              SizedBox(width: 40.w),
+              Text(
+                label,
+                style: TextStyle(
+                  fontSize: 54.sp,
+                  fontWeight:
+                      isActive ? FontWeight.w600 : FontWeight.w400,
+                  color: isActive
+                      ? AppColors.textColor
+                      : AppColors.textSecondary,
+                ),
+              ),
+              if (isActive) ...[
+                const Spacer(),
+                Container(
+                  width: 6,
+                  height: 6,
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.primaryLight,
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    });
   }
 }
