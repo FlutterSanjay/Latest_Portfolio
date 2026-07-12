@@ -30,10 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts:
-  url_launcher:
-  font_awesome_flutter:
-  animated_text_kit:
+  google_fonts: ^6.1.0
+  url_launcher: ^6.3.2
+  font_awesome_flutter: ^10.10.0
+  animated_text_kit: ^4.2.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -46,6 +46,12 @@ dependencies:
   open_file: ^3.5.10
   http: ^1.5.0
   path_provider: ^2.1.5
+  # Open-source chat UI — github.com/molteo-engineering-team/Dash-Chat-2
+  dash_chat_2: ^0.0.21
+  syncfusion_flutter_pdfviewer: ^34.1.30
+  langchain: ^0.8.1
+  langchain_anthropic: ^0.3.1
+  flutter_dotenv: ^6.0.1
 
 
 dev_dependencies:
@@ -73,7 +79,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - images/
-  #   - images/a_dot_ham.jpeg
+     - images/certificates/
+     - .env
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

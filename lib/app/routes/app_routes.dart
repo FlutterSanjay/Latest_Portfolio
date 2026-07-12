@@ -1,4 +1,5 @@
 part of 'app_pages.dart';
+// ignore_for_file: constant_identifier_names
 // DO NOT EDIT. This is code generated via package:get_cli/get_cli.dart
 
 abstract class Routes {
