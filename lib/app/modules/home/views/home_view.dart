@@ -509,19 +509,19 @@ class _HeroSection extends GetView<HomeController> {
           'https://www.linkedin.com/in/sanjay-shaw-6a70a7178/',
           const Color(0xFF0A66C2),
         ),
-        SizedBox(width: isMobile ? 30.w : 14.w),
+        SizedBox(width: isMobile ? 16.w : 14.w),
         _socialIcon(
           FontAwesomeIcons.github,
           'https://github.com/FlutterSanjay',
           AppColors.textSecondary,
         ),
-        SizedBox(width: isMobile ? 30.w : 14.w),
+        SizedBox(width: isMobile ? 16.w : 14.w),
         _socialIcon(
           FontAwesomeIcons.envelope,
           'mailto:sanjayshaw80138@gmail.com',
           AppColors.accentCyan,
         ),
-        SizedBox(width: isMobile ? 30.w : 14.w),
+        SizedBox(width: isMobile ? 16.w : 14.w),
         _socialIcon(
           FontAwesomeIcons.code,
           'https://leetcode.com/u/sanjayshaw80138/',
@@ -580,6 +580,7 @@ class _HeroSection extends GetView<HomeController> {
                       ? MediaQuery.of(context).size.width * 0.52
                       : 320.w,
                   decoration: BoxDecoration(
+                    color: Colors.transparent,
                     borderRadius: BorderRadius.circular(24.r),
                     boxShadow: [
                       BoxShadow(
@@ -596,22 +597,23 @@ class _HeroSection extends GetView<HomeController> {
                   ),
                 ),
                 // Image carousel
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(22.r),
-                  child: Container(
-                    width: isMobile
-                        ? MediaQuery.of(context).size.width * 0.78
-                        : 440.w,
-                    height: isMobile
-                        ? MediaQuery.of(context).size.width * 0.52
-                        : 320.w,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: AppColors.primaryColor.withValues(alpha: 0.35),
-                        width: 1.5,
-                      ),
-                      borderRadius: BorderRadius.circular(22.r),
+                Container(
+                  width: isMobile
+                      ? MediaQuery.of(context).size.width * 0.78
+                      : 440.w,
+                  height: isMobile
+                      ? MediaQuery.of(context).size.width * 0.52
+                      : 320.w,
+                  decoration: BoxDecoration(
+                    color: AppColors.cardColor,
+                    border: Border.all(
+                      color: AppColors.primaryColor.withValues(alpha: 0.35),
+                      width: 1.5,
                     ),
+                    borderRadius: BorderRadius.circular(22.r),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.r),
                     child: CarouselSlider(
                       options: CarouselOptions(
                         height: double.infinity,
@@ -623,9 +625,10 @@ class _HeroSection extends GetView<HomeController> {
                         viewportFraction: 1.0,
                       ),
                       items: controller.sliderImage.map((img) {
+                        final isCertificate = img.toLowerCase().contains('cer');
                         return Image.asset(
                           img,
-                          fit: BoxFit.cover,
+                          fit: isCertificate ? BoxFit.contain : BoxFit.cover,
                           width: double.infinity,
                           errorBuilder: (_, __, ___) => Container(
                             color: AppColors.cardColor,

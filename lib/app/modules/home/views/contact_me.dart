@@ -138,7 +138,7 @@ class ContactMe extends GetView<HomeController> {
       child: GestureDetector(
         onTap: onTap,
         child: Container(
-          padding: EdgeInsets.all(isMobile ? 50.r : 16.r),
+          padding: EdgeInsets.all(isMobile ? 16.r : 16.r),
           decoration: BoxDecoration(
             color: AppColors.cardColor,
             borderRadius: BorderRadius.circular(12.r),
@@ -147,7 +147,7 @@ class ContactMe extends GetView<HomeController> {
           child: Row(
             children: [
               Container(
-                padding: EdgeInsets.all(isMobile ? 18.r : 10.r),
+                padding: EdgeInsets.all(isMobile ? 10.r : 10.r),
                 decoration: BoxDecoration(
                   color: color.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(10.r),
@@ -158,7 +158,7 @@ class ContactMe extends GetView<HomeController> {
                   size: isMobile ? Get.width * 0.042 : 16.sp,
                 ),
               ),
-              SizedBox(width: isMobile ? 30.w : 14.w),
+              SizedBox(width: isMobile ? 14.w : 14.w),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
