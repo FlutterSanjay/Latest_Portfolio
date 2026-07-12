@@ -193,23 +193,26 @@ class Footer extends GetView<HomeController> {
   }
 
   Widget _socialBtn(
-      IconData icon, String url, Color color, bool isMobile) {
-    return GestureDetector(
-      onTap: () => controller.openUrl(url),
-      child: Container(
-        width: isMobile ? Get.width * 0.085 : 36.w,
-        height: isMobile ? Get.width * 0.085 : 36.w,
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.1),
-          borderRadius: BorderRadius.circular(8.r),
-          border:
-              Border.all(color: color.withValues(alpha: 0.25), width: 1),
-        ),
-        child: Center(
-          child: FaIcon(
-            icon,
-            color: color,
-            size: isMobile ? Get.width * 0.038 : 15.sp,
+      FaIconData icon, String url, Color color, bool isMobile) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: () => controller.openUrl(url),
+        child: Container(
+          width: isMobile ? Get.width * 0.085 : 36.w,
+          height: isMobile ? Get.width * 0.085 : 36.w,
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.1),
+            borderRadius: BorderRadius.circular(8.r),
+            border:
+                Border.all(color: color.withValues(alpha: 0.25), width: 1),
+          ),
+          child: Center(
+            child: FaIcon(
+              icon,
+              color: color,
+              size: isMobile ? Get.width * 0.038 : 15.sp,
+            ),
           ),
         ),
       ),
@@ -252,13 +255,16 @@ class Footer extends GetView<HomeController> {
   Widget _quickLink(String title, bool isMobile) {
     return Padding(
       padding: EdgeInsets.only(bottom: isMobile ? 8.h : 6.h),
-      child: GestureDetector(
-        onTap: () => controller.scrollToSection(title),
-        child: Text(
-          title,
-          style: TextStyle(
-            color: AppColors.textSecondary,
-            fontSize: isMobile ? Get.width * 0.03 : 12.sp,
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => controller.scrollToSection(title),
+          child: Text(
+            title,
+            style: TextStyle(
+              color: AppColors.textSecondary,
+              fontSize: isMobile ? Get.width * 0.03 : 12.sp,
+            ),
           ),
         ),
       ),

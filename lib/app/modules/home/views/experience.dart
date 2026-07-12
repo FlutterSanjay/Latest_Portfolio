@@ -235,6 +235,7 @@ class _ExperienceCardState extends State<_ExperienceCard> {
     final bool isMobile = widget.isMobile;
 
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hovered = true),
       onExit: (_) => setState(() => _hovered = false),
       child: AnimatedContainer(

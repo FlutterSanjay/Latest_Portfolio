@@ -23,26 +23,29 @@ class ChatbotWidget extends StatelessWidget {
               bottom: isMobile ? 24.h : 40.h,
               right: isMobile ? 24.w : 40.w,
             ),
-          child: GestureDetector(
-            onTap: controller.toggleChat,
-            child: Container(
-              width: isMobile ? 60.w : 64.w,
-              height: isMobile ? 60.w : 64.w,
-              decoration: BoxDecoration(
-                gradient: AppColors.primaryGradient,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.primaryColor.withValues(alpha: 0.4),
-                    blurRadius: 16,
-                    offset: const Offset(0, 8),
-                  ),
-                ],
-              ),
-              child: const Icon(
-                Icons.chat_bubble_outline_rounded,
-                color: Colors.white,
-                size: 32,
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: controller.toggleChat,
+              child: Container(
+                width: isMobile ? 60.w : 64.w,
+                height: isMobile ? 60.w : 64.w,
+                decoration: BoxDecoration(
+                  gradient: AppColors.primaryGradient,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primaryColor.withValues(alpha: 0.4),
+                      blurRadius: 16,
+                      offset: const Offset(0, 8),
+                    ),
+                  ],
+                ),
+                child: const Icon(
+                  Icons.chat_bubble_outline_rounded,
+                  color: Colors.white,
+                  size: 32,
+                ),
               ),
             ),
           ),

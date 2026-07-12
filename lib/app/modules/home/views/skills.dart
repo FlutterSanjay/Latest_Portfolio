@@ -51,7 +51,7 @@ class _SkillsState extends State<Skills> {
                   final cat = _skillCategories[i];
                   return _SkillCard(
                     title: cat['title'] as String,
-                    icon: cat['icon'] as IconData,
+                    icon: cat['icon'] as FaIconData,
                     color: cat['color'] as Color,
                     skills: cat['skills'] as List<Map<String, dynamic>>,
                     isMobile: isMobile,
@@ -135,7 +135,7 @@ class _SkillsState extends State<Skills> {
 // ─── Skill Card ───────────────────────────────────────────────────────────────
 class _SkillCard extends StatefulWidget {
   final String title;
-  final IconData icon;
+  final FaIconData icon;
   final Color color;
   final List<Map<String, dynamic>> skills;
   final bool isMobile;
