@@ -126,74 +126,76 @@ class ContactMe extends GetView<HomeController> {
   }
 
   Widget _contactCard({
-    required IconData icon,
+    required FaIconData icon,
     required String label,
     required String value,
     required Color color,
     required VoidCallback? onTap,
     required bool isMobile,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: EdgeInsets.all(isMobile ? 50.r : 16.r),
-        decoration: BoxDecoration(
-          color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(12.r),
-          border: Border.all(color: AppColors.borderColor, width: 1),
-        ),
-        child: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.all(isMobile ? 18.r : 10.r),
-              decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(10.r),
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: EdgeInsets.all(isMobile ? 50.r : 16.r),
+          decoration: BoxDecoration(
+            color: AppColors.cardColor,
+            borderRadius: BorderRadius.circular(12.r),
+            border: Border.all(color: AppColors.borderColor, width: 1),
+          ),
+          child: Row(
+            children: [
+              Container(
+                padding: EdgeInsets.all(isMobile ? 18.r : 10.r),
+                decoration: BoxDecoration(
+                  color: color.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: FaIcon(
+                  icon,
+                  color: color,
+                  size: isMobile ? Get.width * 0.042 : 16.sp,
+                ),
               ),
-              child: FaIcon(
-                icon,
-                color: color,
-                size: isMobile ? Get.width * 0.042 : 16.sp,
-              ),
-            ),
-            SizedBox(width: isMobile ? 30.w : 14.w),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    label,
-                    style: TextStyle(
-                      color: AppColors.textMuted,
-                      fontSize: isMobile ? Get.width * 0.026 : 11.sp,
-                      fontWeight: FontWeight.w500,
+              SizedBox(width: isMobile ? 30.w : 14.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      label,
+                      style: TextStyle(
+                        color: AppColors.textMuted,
+                        fontSize: isMobile ? Get.width * 0.026 : 11.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 2.h),
-                  Text(
-                    value,
-                    style: TextStyle(
-                      color: onTap != null
-                          ? color
-                          : AppColors.textColor,
-                      fontSize: isMobile ? Get.width * 0.031 : 13.sp,
-                      fontWeight: FontWeight.w500,
+                    SizedBox(height: 2.h),
+                    Text(
+                      value,
+                      style: TextStyle(
+                        color: onTap != null ? color : AppColors.textColor,
+                        fontSize: isMobile ? Get.width * 0.031 : 13.sp,
+                        fontWeight: FontWeight.w500,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            if (onTap != null)
-              Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: AppColors.textMuted,
-                size: isMobile ? Get.width * 0.028 : 11.sp,
-              ),
-          ],
+              if (onTap != null)
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColors.textMuted,
+                  size: isMobile ? Get.width * 0.028 : 11.sp,
+                ),
+            ],
+          ),
         ),
       ),
     );
   }
+
 
   Widget _contactForm(BuildContext context) {
     final bool isMobile = 1.sw < 800;
@@ -233,7 +235,9 @@ class ContactMe extends GetView<HomeController> {
               maxLines: 5),
           SizedBox(height: isMobile ? 30.h : 24.h),
           // Send button
-          Obx(() => GestureDetector(
+          Obx(() => MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: GestureDetector(
                 onTap: controller.isSendingMessage.value
                     ? null
                     : () => controller.sendMessage(),
@@ -295,7 +299,7 @@ class ContactMe extends GetView<HomeController> {
                           ),
                   ),
                 ),
-              )),
+              ))),
         ],
       ),
     );

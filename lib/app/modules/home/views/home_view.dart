@@ -408,84 +408,90 @@ class _HeroSection extends GetView<HomeController> {
       alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
       children: [
         // Primary — Download Resume
-        GestureDetector(
-          onTap: () => controller.downloadPdf(
-            'https://drive.google.com/uc?export=download&id=1B0yyc7t47EYZAl7nIqKWT4X9j3YymI1F',
-            'Sanjay_Shaw_Resume',
-          ),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: isMobile ? 30.w : 24.w,
-              vertical: isMobile ? 14.h : 14.h,
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () => controller.downloadPdf(
+              'https://drive.google.com/uc?export=download&id=1B0yyc7t47EYZAl7nIqKWT4X9j3YymI1F',
+              'Sanjay_Shaw_Resume',
             ),
-            decoration: BoxDecoration(
-              gradient: AppColors.primaryGradient,
-              borderRadius: BorderRadius.circular(10.r),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primaryColor.withValues(alpha: 0.4),
-                  blurRadius: 16,
-                  offset: const Offset(0, 6),
-                ),
-              ],
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.download_rounded,
-                  color: Colors.white,
-                  size: isMobile ? Get.width * 0.04 : 18.sp,
-                ),
-                SizedBox(width: isMobile ? 16.w : 8.w),
-                Text(
-                  'download_resume'.tr,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: isMobile ? Get.width * 0.033 : 15.sp,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.3,
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 30.w : 24.w,
+                vertical: isMobile ? 14.h : 14.h,
+              ),
+              decoration: BoxDecoration(
+                gradient: AppColors.primaryGradient,
+                borderRadius: BorderRadius.circular(10.r),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryColor.withValues(alpha: 0.4),
+                    blurRadius: 16,
+                    offset: const Offset(0, 6),
                   ),
-                ),
-              ],
+                ],
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.download_rounded,
+                    color: Colors.white,
+                    size: isMobile ? Get.width * 0.04 : 18.sp,
+                  ),
+                  SizedBox(width: isMobile ? 16.w : 8.w),
+                  Text(
+                    'download_resume'.tr,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: isMobile ? Get.width * 0.033 : 15.sp,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
         // Secondary — View Projects
-        GestureDetector(
-          onTap: () => controller.scrollToSection('Projects'),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: isMobile ? 30.w : 24.w,
-              vertical: isMobile ? 14.h : 14.h,
-            ),
-            decoration: BoxDecoration(
-              color: AppColors.glassColor,
-              borderRadius: BorderRadius.circular(10.r),
-              border: Border.all(
-                color: AppColors.borderBright,
-                width: 1,
+        MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: GestureDetector(
+            onTap: () => controller.scrollToSection('Projects'),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile ? 30.w : 24.w,
+                vertical: isMobile ? 14.h : 14.h,
               ),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.rocket_launch_rounded,
-                  color: AppColors.textSecondary,
-                  size: isMobile ? Get.width * 0.04 : 18.sp,
+              decoration: BoxDecoration(
+                color: AppColors.glassColor,
+                borderRadius: BorderRadius.circular(10.r),
+                border: Border.all(
+                  color: AppColors.borderBright,
+                  width: 1,
                 ),
-                SizedBox(width: isMobile ? 16.w : 8.w),
-                Text(
-                  'View Projects',
-                  style: TextStyle(
-                    color: AppColors.textColor,
-                    fontSize: isMobile ? Get.width * 0.033 : 15.sp,
-                    fontWeight: FontWeight.w500,
-                    letterSpacing: 0.3,
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.rocket_launch_rounded,
+                    color: AppColors.textSecondary,
+                    size: isMobile ? Get.width * 0.04 : 18.sp,
                   ),
-                ),
-              ],
+                  SizedBox(width: isMobile ? 16.w : 8.w),
+                  Text(
+                    'View Projects',
+                    style: TextStyle(
+                      color: AppColors.textColor,
+                      fontSize: isMobile ? Get.width * 0.033 : 15.sp,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 0.3,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -525,7 +531,7 @@ class _HeroSection extends GetView<HomeController> {
     );
   }
 
-  Widget _socialIcon(IconData icon, String url, Color color) {
+  Widget _socialIcon(FaIconData icon, String url, Color color) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
