@@ -74,6 +74,22 @@ class Experience extends StatelessWidget {
         'Inngest'
       ],
     },
+    {
+      'duration': '15 Jun 2024 – 15 Dec 2024',
+      'title': 'Flutter Developer Intern',
+      'company': 'Traizine Technologies',
+      'type': 'exp_type_internship'.tr,
+      'color': const Color(0xFFF59E0B),
+      'desc_key': 'exp3_desc',
+      'skills': [
+        'Flutter',
+        'Dart',
+        'REST APIs',
+        'State Management',
+        'Git/GitHub',
+        'UI Design'
+      ],
+    },
   ];
 }
 

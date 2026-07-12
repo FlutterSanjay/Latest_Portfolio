@@ -23,17 +23,17 @@ class AppTranslations extends Translations {
           'role_backend': 'Backend Developer',
           'role_fullstack': 'Full Stack Developer',
           'role_mobile': 'Mobile App Specialist',
-          'hero_desc': 'A passionate Flutter Developer and Computer Science Engineering student with expertise in cross-platform mobile apps, React.js, and Node.js. Building elegant, high-performance solutions that solve real-world problems.',
+          'hero_desc': 'A result-oriented Software Engineer specializing in Flutter and full-stack development. Combining 1+ years of hands-on internship experience with a solid academic foundation in Computer Science, I design and build scalable, high-performance mobile and web applications that deliver exceptional user experiences.',
           'download_resume': 'Download Resume',
           
           // About Section
           'about_title': 'About Me',
           'about_subtitle': 'Passionate developer building elegant digital experiences',
           'about_heading': "I'm Sanjay Shaw",
-          'about_p1': "As a Computer Science and Engineering student, I am passionate about creating responsive, user-friendly, and scalable applications. I specialize in Flutter development, with strong knowledge of Dart, C++, and JavaScript.",
-          'about_p2': "My experience extends to full-stack development using Node.js, Express.js, React.js, and database management with MongoDB, MySQL, and Firebase. I bring expertise in state management (GetX, BLoC) and AI integration with LLMs & LangChain, ensuring both functionality and great user experience.",
+          'about_p1': "I am a Computer Science & Engineering student and Software Engineer with 1+ years of professional internship experience. Specializing in Flutter, Dart, C++, and JavaScript, I focus on architecting responsive, user-centric, and scalable cross-platform applications.",
+          'about_p2': "My technical expertise spans full-stack engineering with React.js, Node.js, and Express, alongside database design across MongoDB, MySQL, and Firebase. I have proven experience implementing robust state management (GetX, BLoC) and integrating advanced AI capabilities using LLMs and LangChain to deliver optimized, production-ready solutions.",
           'stat_projects': 'Projects',
-          'stat_internships': 'Internships',
+          'stat_internships': 'Experience',
           'stat_certificates': 'Certificates',
 
           // Skills Section
@@ -53,6 +53,7 @@ class AppTranslations extends Translations {
           'exp_view_cert': 'View Certificate',
           'exp1_desc': 'Contributed to building a cross-platform Sales CRM mobile application using Flutter, GetX, and MVC architecture. Worked on 30+ screens, integrated RESTful APIs via Dio with secure authentication (Google/Microsoft OAuth). Assisted in implementing a 4-tier RBAC system and integrated Firebase, ML Kit OCR, and Syncfusion Charts.',
           'exp2_desc': 'Contributed to full-stack feature development using the MERN stack. Designed MongoDB schemas, developed RESTful APIs, implemented secure user authentication, and built responsive user interfaces using React.js and Tailwind CSS within an Agile environment.',
+          'exp3_desc': 'Worked on building and optimizing mobile applications using Flutter and Dart. Designed pixel-perfect responsive UIs, integrated secure REST APIs, and improved application load times and performance.',
 
           // Projects Section
           'proj_title': 'Featured Projects',
@@ -131,17 +132,17 @@ class AppTranslations extends Translations {
           'role_backend': 'बैकएंड डेवलपर',
           'role_fullstack': 'फुल स्टैक डेवलपर',
           'role_mobile': 'मोबाइल ऐप विशेषज्ञ',
-          'hero_desc': 'एक जुनूनी Flutter डेवलपर और कंप्यूटर विज्ञान इंजीनियरिंग का छात्र, जिसे क्रॉस-प्लेटफॉर्म मोबाइल ऐप, React.js और Node.js में विशेषज्ञता हासिल है। मैं वास्तविक दुनिया की समस्याओं को सुलझाने वाले शानदार, उच्च-प्रदर्शन वाले समाधान बनाता हूँ।',
+          'hero_desc': 'फ्लटर और फुल-स्टैक विकास में विशेषज्ञता रखने वाले एक परिणाम-उन्मुख सॉफ्टवेयर इंजीनियर। कंप्यूटर विज्ञान में एक ठोस शैक्षणिक आधार के साथ 1+ वर्ष के व्यावहारिक इंटर्नशिप अनुभव को मिलाते हुए, मैं स्केलेबल, उच्च-प्रदर्शन वाले मोबाइल और वेब एप्लिकेशन डिज़ाइन और विकसित करता हूँ जो असाधारण उपयोगकर्ता अनुभव प्रदान करते हैं।',
           'download_resume': 'रिज्यूमे डाउनलोड करें',
 
           // About Section
           'about_title': 'मेरे बारे में',
           'about_subtitle': 'शानदार डिजिटल अनुभव बनाने वाला एक जुनूनी डेवलपर',
           'about_heading': 'मैं संजय शॉ हूँ',
-          'about_p1': 'कंप्यूटर विज्ञान और इंजीनियरिंग के छात्र के रूप में, मैं उत्तरदायी, उपयोगकर्ता के अनुकूल और स्केलेबल एप्लिकेशन बनाने के प्रति जुनूनी हूँ। मैं डार्ट, C++ और जावास्क्रिप्ट के मजबूत ज्ञान के साथ Flutter विकास में विशेषज्ञ हूँ।',
-          'about_p2': 'मेरा अनुभव Node.js, Express.js, React.js का उपयोग करके फुल-स्टैक विकास और MongoDB, MySQL और Firebase के साथ डेटाबेस प्रबंधन तक फैला हुआ है। मैं राज्य प्रबंधन (GetX, BLoC) और LLMs और LangChain के साथ AI एकीकरण में विशेषज्ञता लाता हूँ, जो कार्यक्षमता और बेहतरीन उपयोगकर्ता अनुभव दोनों सुनिश्चित करता है।',
+          'about_p1': 'मैं 1+ वर्ष के पेशेवर इंटर्नशिप अनुभव के साथ कंप्यूटर विज्ञान और इंजीनियरिंग का छात्र और सॉफ्टवेयर इंजीनियर हूँ। फ्लटर, डार्ट, C++ और जावास्क्रिप्ट में विशेषज्ञता के साथ, मेरा ध्यान उत्तरदायी, उपयोगकर्ता-केंद्रित और स्केलेबल क्रॉस-प्लेटफ़ॉर्म एप्लिकेशन तैयार करने पर है।',
+          'about_p2': 'मेरी तकनीकी विशेषज्ञता मोंगोडीबी, MySQL और फायरबेस में डेटाबेस डिज़ाइन के साथ-साथ रिएक्ट.जीएस, नोड.जीएस और एक्सप्रेस के साथ फुल-स्टैक इंजीनियरिंग तक फैली हुई है। मेरे पास कुशल स्टेट मैनेजमेंट (GetX, BLoC) लागू करने और अनुकूलित, उत्पादन-तैयार समाधान प्रदान करने के लिए एलएलएम और लैंगचेन का उपयोग करके उन्नत एआई क्षमताओं को एकीकृत करने का प्रमाणित अनुभव है।',
           'stat_projects': 'परियोजनाएं',
-          'stat_internships': 'इंटर्नशिप',
+          'stat_internships': 'अनुभव',
           'stat_certificates': 'प्रमाण पत्र',
 
           // Skills Section
@@ -161,6 +162,7 @@ class AppTranslations extends Translations {
           'exp_view_cert': 'प्रमाण पत्र देखें',
           'exp1_desc': 'Flutter, GetX और MVC आर्किटेक्चर का उपयोग करके क्रॉस-प्लेटफॉर्म सेल्स CRM मोबाइल एप्लिकेशन बनाने में योगदान दिया। 30+ स्क्रीन पर काम किया, सुरक्षित प्रमाणीकरण (Google/Microsoft OAuth) के साथ Dio के माध्यम से RESTful APIs को एकीकृत किया। 4-स्तरीय RBAC प्रणाली को लागू करने में सहायता की और Firebase, ML किट OCR, और Syncfusion Charts को एकीकृत किया।',
           'exp2_desc': 'MERN स्टैक का उपयोग करके फुल-स्टैक फीचर विकास में योगदान दिया। मोंगोडीबी स्कीमा डिजाइन किए, RESTful APIs विकसित किए, सुरक्षित उपयोगकर्ता प्रमाणीकरण लागू किया, और एक चुस्त वातावरण के भीतर React.js और Tailwind CSS का उपयोग करके उत्तरदायी यूजर इंटरफेस बनाए।',
+          'exp3_desc': 'Flutter और Dart का उपयोग करके मोबाइल एप्लिकेशन बनाने और उनके अनुकूलन पर काम किया। पिक्सेल-परफेक्ट रिस्पॉन्सिव यूआई डिज़ाइन किए, सुरक्षित REST APIs को एकीकृत किया, और एप्लिकेशन के प्रदर्शन में सुधार किया।',
 
           // Projects Section
           'proj_title': 'विशेष रुप से प्रदर्शित परियोजनाएं',

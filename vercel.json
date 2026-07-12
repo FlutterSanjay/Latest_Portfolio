@@ -1,4 +1,6 @@
 {
+  "buildCommand": "echo \"CLAUDE_API_KEY=$CLAUDE_API_KEY\" > .env && flutter/bin/flutter build web --release --no-wasm-dry-run",
+  "outputDirectory": "build/web",
   "rewrites": [
     {
       "source": "/api/anthropic/:match*",
